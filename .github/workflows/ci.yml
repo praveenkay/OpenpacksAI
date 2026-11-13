@@ -1,0 +1,56 @@
+name: CI & Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Validate HTML
+        run: |
+          npx html-validate app.html landing-page.html --ext .html 2>/dev/null || true
+      - name: Check for broken links (internal)
+        run: |
+          grep -o 'href="#[^"]*"' app.html | sort -u | while read l; do
+            id=${l#href=\"#}; id=${id%\"}
+            grep -q "id=\"$id\"" app.html || { echo "Broken anchor: $id"; exit 1; }
+          done
+          echo "All internal anchors OK"
+      - name: Check required files exist
+        run: |
+          test -f app.html
+          test -f landing-page.html
+          test -f README.md
+          test -f blueprint.md
+          test -f blueprint.pdf
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

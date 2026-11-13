@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenPacks — Free Open-Source Business OS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #111; }
+    .max-w-2xl { max-width: 640px; margin: 0 auto; padding: 2rem; }
+    .header { padding: 3rem 0 2rem; text-align: center; border-bottom: 1px solid #eaecef; }
+    .header h1 { font-size: 2.5rem; margin-bottom: 0.25rem; }
+    .header .tagline { color: #0066cc; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .header .desc { color: #65676b; font-size: 1rem; max-width: 38rem; margin: 0 auto; line-height: 1.5; }
+    .section { margin: 3rem 0; }
+    .section h2 { font-size: 1.75rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #f0f2f5; }
+    .section h3 { font-size: 1.25rem; margin: 1.5rem 0 0.5rem; }
+    .price-badge { display: inline-block; padding: 0.25rem 0.75rem; background: #0066cc; color: #fff; font-size: 0.875rem; border-radius: 4px; margin-top: 0.5rem; }
+    .cta-button { display: inline-block; padding: 0.875rem 1.5rem; background: #0066cc; color: #fff; text-decoration: none; font-weight: 600; border-radius: 4px; margin-top: 1rem; }
+    .cta-button:hover { background: #0052a3; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .card { border: 1px solid #eaecef; border-radius: 6px; padding: 1rem; }
+    .card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+    .footer { padding: 3rem 0; text-align: center; color: #65676b; font-size: 0.875rem; border-top: 1px solid #eaecef; }
+    .stack-list { background: #f8f9fa; padding: 1rem; border-radius: 6px; font-size: 0.9rem; }
+    .stack-list li { margin: 0.25rem 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.85rem; }
+    th, td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid #eaecef; }
+    th { background: #f6f8fa; font-weight: 600; }
+    nav { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.25rem; font-size: 0.9rem; }
+    nav a { color: #0066cc; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .pricing-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.85rem; }
+    .pricing-table th, .pricing-table td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #eaecef; }
+    .pricing-table th { background: #f6f8fa; font-weight: 600; }
+    .pricing-table .tier { font-weight: 600; color: #0066cc; }
+    .blueprint { background: #fafafa; border: 1px solid #eaecef; border-radius: 6px; padding: 1rem; margin: 1rem 0; }
+    .blueprint h4 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+    .blueprint .free, .blueprint .starter, .blueprint .paid { margin: 0.4rem 0; font-size: 0.9rem; }
+    .blueprint .free strong { color: #2c7a0b; }
+    .blueprint .starter strong { color: #0066cc; }
+    .blueprint .paid strong { color: #c9510c; }
+    .blueprint ul { margin: 0.25rem 0 0.5rem 1.25rem; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="max-w-2xl">
+    <div class="header">
+      <h1>OpenPacks</h1>
+      <p class="tagline">Free Open-Source Business OS. Then scale when you need it.</p>
+      <p class="desc">Industry-ready packs for property managers, rental agencies, HVAC, landscaping, handyman, small vendors, shops, restaurants, and general SMBs. Start completely free by self-hosting mature GitHub projects. Move to managed, customized, or supported versions at SMB prices — not enterprise retainers. Fully customizable for any trade or local area.</p>
+      <nav>
+        <a href="#pain-points">Pain Points</a>
+        <a href="#packs">Industry Packs</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#blueprints">Blueprints</a>
+        <a href="#compare">Compare</a>
+      </nav>
+    </div>
+
+    <section class="section" id="free">
+      <h2>Free Self-Hosted Base</h2>
+      <p>Start completely free with proven open-source business systems from GitHub. Pick the base system that matches your vertical. No per-user fees. Only your VPS/local cost (~$6–24/month).</p>
+      <div class="stack-list">
+        <strong>Industry-Specific Base Systems:</strong>
+        <ul>
+          <li><strong>Property / Rentals:</strong> OpenProperty (MIT) — units, leases, rent ledger, maintenance work orders</li>
+          <li><strong>Field Service / Trades:</strong> OpenFieldPro — dispatch, work orders, mobile tech app, invoicing</li>
+          <li><strong>Salons / Appointment:</strong> OpenSalon / Pronto — booking, staff calendar, clients, inventory</li>
+          <li><strong>Retail / Shops / Vendors:</strong> Posnic (AGPL) / MyCompany (Apache 2.0) — offline-first POS + inventory</li>
+          <li><strong>Restaurants:</strong> URY on ERPNext / Posnic — tables, KDS, menu, offline POS</li>
+          <li><strong>General SMB:</strong> Dolibarr / ERPNext / MyCompany — invoicing, CRM, inventory, projects, accounting</li>
+        </ul>
+      </div>
+      <p style="margin-top: 1rem;">Plus AI agent layer: n8n, Dify/Langflow, CrewAI/LangGraph, Hermes Agent, OpenClaw — all self-hosted, zero API cost with local models (Ollama/LM Studio) or BYOK.</p>
+      <h3 style="margin-top: 1.5rem;">Implementation Path</h3>
+      <ol>
+        <li>Clone the starter repository</li>
+        <li>Run <code>docker compose up</code></li>
+        <li>Deploy 1–2 high-value agents from templates</li>
+        <li>Upgrade to managed or paid packs when value is proven</li>
+      </ol>
+    </section>
+
+    <section class="section" id="pain-points">
+      <h2>What We Fix First</h2>
+      <p>Researched pain points that cost the most money or time. Every pack attacks these first.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Property / Rentals</h3>
+          <p><strong>Late rent & maintenance chaos.</strong> Rent reconciliation can take 12–15 hrs/week. Requests by text with no tracking. Owner statements go out late. Spreadsheets everywhere.</p>
+        </div>
+        <div class="card">
+          <h3>HVAC / Trades</h3>
+          <p><strong>Scheduling waste & delayed invoices.</strong> Manual routes waste $3k–$5k/month. Paper tickets sit for days. Techs arrive without parts. Dispatchers burn ~15 hrs/week.</p>
+        </div>
+        <div class="card">
+          <h3>Landscaping</h3>
+          <p><strong>Route chaos & recurring billing gaps.</strong> Wasted drive time across crews. Invoices delayed days/weeks. Recurring contracts missed or inconsistently billed. Weather changes poorly communicated.</p>
+        </div>
+        <div class="card">
+          <h3>Handyman</h3>
+          <p><strong>Admin longer than the job.</strong> Quoting and invoicing take longer than small jobs. Missed materials markup and scope creep. Rare same-day invoicing. Disconnected tools.</p>
+        </div>
+        <div class="card">
+          <h3>Small Vendors</h3>
+          <p><strong>Offline checkout & perishable waste.</strong> Markets need offline-first POS. Fast checkout in tight spaces. Stockouts or waste from poor tracking. Limited real-time visibility.</p>
+        </div>
+        <div class="card">
+          <h3>Retail</h3>
+          <p><strong>Stockouts at the counter.</strong> 56% discover stockouts only when the customer is there. Disconnected POS and inventory. Manual counts waste hours.</p>
+        </div>
+        <div class="card">
+          <h3>Restaurants</h3>
+          <p><strong>Table & kitchen blindness.</strong> Nobody knows which table is free. Paper tickets jam or arrive late. Slow turnover and inventory guesswork.</p>
+        </div>
+        <div class="card">
+          <h3>General SMB</h3>
+          <p><strong>Spreadsheet invoicing.</strong> Quotes, invoices, and payments live in disconnected tools. Late payments invisible. Limited reporting.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="packs">
+      <h2>Industry Packs</h2>
+      <p>Each pack is a free open-source base, pre-configured. Customize further for any area, local rules, or trade.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Property / Rentals</h3>
+          <p>Units, leases, rent ledger, maintenance. Free MIT self-host. Paid: tenant portal, automated reminders, owner statements, multi-location.</p>
+        </div>
+        <div class="card">
+          <h3>HVAC / Trades</h3>
+          <p>Dispatch, work orders, mobile completion, invoicing. Free base. Paid: GPS, parts inventory, same-day invoicing, "On My Way" texts, skill matching.</p>
+        </div>
+        <div class="card">
+          <h3>Landscaping</h3>
+          <p>Crew routes, recurring jobs, invoicing. Free base. Paid: route helpers, auto-invoicing, photo proof, weather notes.</p>
+        </div>
+        <div class="card">
+          <h3>Handyman</h3>
+          <p>Fast quotes, calendar, on-site invoicing. Free for solo. Paid: price book, deposits, client portal, templates.</p>
+        </div>
+        <div class="card">
+          <h3>Small Vendors</h3>
+          <p>Offline-first POS + inventory for markets. Free self-host. Paid: sync, low-stock alerts, multi-event reporting.</p>
+        </div>
+        <div class="card">
+          <h3>Retail / Shops</h3>
+          <p>Offline-first POS + inventory. Free: self-host. Paid: multi-register, barcode, payment terminal, reporting.</p>
+        </div>
+        <div class="card">
+          <h3>Restaurants</h3>
+          <p>Tables, KDS, menu, offline POS. Free base. Paid: QR ordering, delivery integrations, kitchen printer routing.</p>
+        </div>
+        <div class="card">
+          <h3>General SMB</h3>
+          <p>Invoicing, CRM, inventory, projects. Free. Paid: localized accounting, e-invoicing, custom reports, hosting.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" style="background: #fafafa;">
+      <h2>Simple Pricing</h2>
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Price</th>
+            <th>What's Included</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tier">Free / Community</td>
+            <td>$0 forever</td>
+            <td>Self-host any base system • Full source code (GitHub) • Unlimited users & data • Community docs & templates</td>
+          </tr>
+          <tr>
+            <td class="tier">Starter Pack</td>
+            <td>$499–$2,500 one-time</td>
+            <td>Pre-configured Docker setup • Industry sample data & workflows • Branding + basic integrations • Guided install + 30-day support</td>
+          </tr>
+          <tr>
+            <td class="tier">Managed</td>
+            <td>$49–$249 /month</td>
+            <td>Hosted & updated for you • Backups, monitoring, SSL • Priority support • Multi-location ready</td>
+          </tr>
+          <tr>
+            <td class="tier">Custom</td>
+            <td>From $1,500 project</td>
+            <td>Custom modules & reports • Payment / accounting / WhatsApp integrations • Mobile or advanced workflows • Training, migration & localizations</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: #65676b;">All prices intentionally lower than enterprise custom AI/ERP builds ($7k–$60k+).</p>
+    </section>
+
+    <section class="section" id="blueprints">
+      <h2>Packaging Blueprints</h2>
+      <p>Free base → Starter Pack → Paid enhancements. Prices per vertical.</p>
+
+      <div class="blueprint">
+        <h4>Property / Rental Agencies (OpenProperty or ERPNext)</h4>
+        <div class="free"><strong>Free Base:</strong> Properties, units, tenants, leases, rent ledger, maintenance work orders</div>
+        <div class="starter"><strong>Starter Pack ($599–$1,299):</strong> Guided setup + sample data for local market, late-rent reminder templates, basic owner reports & bank matching config</div>
+        <div class="paid"><strong>Paid (high priority):</strong> Automated reminders + late-fee rules, tenant portal for requests + photos, work-order tracking with audit trail, owner statements / accounting export, multi-location roles & custom local rules</div>
+      </div>
+
+      <div class="blueprint">
+        <h4>HVAC / Mechanical / Trades (OpenFieldPro or ERPNext Field)</h4>
+        <div class="free"><strong>Free Base:</strong> Customers, jobs, scheduling, work orders, estimates, invoicing</div>
+        <div class="starter"><strong>Starter Pack ($1,199–$2,499):</strong> Dispatch board + mobile-friendly tech workflows, price book for common HVAC/plumbing/electrical tasks, sample job types & checklists</div>
+        <div class="paid"><strong>Paid (high priority):</strong> Same-day / on-site invoicing, photo + signature capture, "On My Way" customer texts, GPS / live status & route helpers, skill-based assignment & parts inventory</div>
+      </div>
+
+      <div class="blueprint">
+        <h4>Landscaping / Lawn Care (OpenFieldPro configured for recurring)</h4>
+        <div class="free"><strong>Free Base:</strong> Jobs, crew scheduling, estimates, invoicing (same field-service base)</div>
+        <div class="starter"><strong>Starter Pack ($899–$1,799):</strong> Recurring route templates, crew calendars & basic job costing, sample service catalog (mowing, cleanup, seasonal)</div>
+        <div class="paid"><strong>Paid:</strong> Route sequencing helpers, auto-invoicing on job completion, photo proof of work, weather-aware notes & client updates</div>
+      </div>
+
+      <div class="blueprint">
+        <h4>Handyman / Small Multi-Trade (Lightweight OpenFieldPro or Dolibarr/MyCompany)</h4>
+        <div class="free"><strong>Free Base:</strong> Fast mobile quotes, calendar, work orders, on-site invoicing</div>
+        <div class="starter"><strong>Starter Pack ($499–$999):</strong> Price book & common job templates, deposit / simple payment config, solo-operator friendly setup</div>
+        <div class="paid"><strong>Paid:</strong> Client portal & status updates, recurring client jobs, advanced reporting & multi-crew if needed</div>
+      </div>
+
+      <div class="blueprint">
+        <h4>Small Vendors — Food Trucks, Markets, Pop-ups (Posnic or MyCompany)</h4>
+        <div class="free"><strong>Free Base:</strong> Offline-first catalog, checkout, basic inventory</div>
+        <div class="starter"><strong>Starter Pack ($499–$999):</strong> Event / multi-location sample setup, low-stock & unit-conversion config, receipt branding</div>
+        <div class="paid"><strong>Paid:</strong> Offline sync improvements, multi-event reporting, payment integration & alerts</div>
+      </div>
+
+      <div class="blueprint">
+        <h4>Retail / Shops (Posnic or MyCompany)</h4>
+        <div class="free"><strong>Free Base:</strong> Product catalog, barcode, checkout, basic inventory, daily reports</div>
+        <div class="starter"><strong>Starter Pack ($799–$1,499):</strong> Docker / one-command setup, sample product data + category structure, low-stock alert config</div>
+        <div class="paid"><strong>Managed / Add-ons:</strong> Real-time multi-channel sync, payment terminal integration, advanced reports / export to accounting</div>
+      </div>
+
+      <div class="blueprint">
+        <h4>Restaurants (URY on ERPNext or Posnic)</h4>
+        <div class="free"><strong>Free Base:</strong> Tables, menu, dine-in / takeaway, kitchen display basics, offline POS</div>
+        <div class="starter"><strong>Starter Pack ($999–$1,999):</strong> Pre-configured restaurant chart + sample menu, KDS setup with basic station routing, staff roles</div>
+        <div class="paid"><strong>Paid Enhancements:</strong> Live table board, better KDS routing + offline, simple recipe depletion, fast split/merge checkout</div>
+      </div>
+
+      <div class="blueprint">
+        <h4>General SMB (Dolibarr / ERPNext / MyCompany)</h4>
+        <div class="free"><strong>Free Base:</strong> Full ERP: quotes, invoices, CRM, inventory, projects, basic accounting</div>
+        <div class="starter"><strong>Starter Pack ($699–$1,999):</strong> Chart of accounts localized, module activation + sample data, user roles</div>
+        <div class="paid"><strong>Paid:</strong> Payment reminders, e-invoicing / tax compliance, custom reports & dashboards, hosting + priority support</div>
+      </div>
+    </section>
+
+    <section class="section" id="compare">
+      <h2>Base Systems Comparison</h2>
+      <p>Each pack is a configuration of these mature open-source bases. Choose by vertical, then customize for your area.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>System</th>
+            <th>Best For</th>
+            <th>License</th>
+            <th>Self-Host Ease</th>
+            <th>Maturity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MyCompany</td>
+            <td>Full ERP + POS</td>
+            <td>Apache 2.0</td>
+            <td>High</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>Dolibarr</td>
+            <td>Micro / Small</td>
+            <td>GPL-3.0</td>
+            <td>Very High</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>ERPNext</td>
+            <td>Growing SMB / Field / Property</td>
+            <td>GPL-3.0</td>
+            <td>Medium</td>
+            <td>Very High</td>
+          </tr>
+          <tr>
+            <td>OpenProperty</td>
+            <td>Landlords / Rentals</td>
+            <td>MIT</td>
+            <td>High</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>Posnic</td>
+            <td>Retail / Restaurant / Vendors</td>
+            <td>AGPL-3.0</td>
+            <td>High</td>
+            <td>Medium-High</td>
+          </tr>
+          <tr>
+            <td>OpenFieldPro</td>
+            <td>Field Service (HVAC, Landscaping, Handyman)</td>
+            <td>Check repo</td>
+            <td>Medium</td>
+            <td>Emerging</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: #65676b;">OpenPacks — Package mature open-source systems. Free to start. Fair pricing to grow. Customizable for any area.<br>Built from real GitHub projects: MyCompany, Dolibarr, ERPNext, Posnic, OpenProperty, OpenFieldPro, URY and more.</p>
+    </section>
+
+    <a href="#" class="cta-button">Get Started — Free Self-Host Now</a>
+
+    <footer class="footer">
+      <p>Built from real GitHub projects: MyCompany, Dolibarr, ERPNext, Posnic, OpenProperty, OpenFieldPro, URY, OpenSalon and more.</p>
+      <p>Free to start. Fair pricing to grow. Customizable for any trade or local area via configuration of these open-source bases.</p>
+    </footer>
+  </div>
+</body>
+</html>

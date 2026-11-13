@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenPacks — Free Open-Source Business OS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: #f8f9fa; color: #111; }
+    .max-w-2xl { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+    .header { padding: 2rem 0 1.5rem; text-align: center; border-bottom: 1px solid #eaecef; }
+    .header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .header .tagline { color: #0066cc; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .header .desc { color: #65676b; font-size: 1rem; max-width: 80rem; margin: 0 auto; line-height: 1.5; }
+    .section { margin: 3rem 0; }
+    .section h2 { font-size: 1.75rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #f0f2f5; }
+    .section h3 { font-size: 1.25rem; margin: 1.5rem 0 0.5rem; }
+    .card { border: 1px solid #eaecef; border-radius: 8px; padding: 1.5rem; background: #fff; margin-bottom: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .card h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .card p { margin: 0.5rem 0; }
+    .card .price { color: #0066cc; font-weight: 600; }
+    .card .price-badge { display: inline-block; padding: 0.25rem 0.75rem; background: #0066cc; color: #fff; font-size: 0.875rem; border-radius: 4px; margin-top: 0.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+    .footer { padding: 2rem 0; text-align: center; color: #65676b; font-size: 0.9rem; border-top: 1px solid #eaecef; }
+    .video-container { margin: 2rem 0; }
+    .video-player { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .video-player iframe { width: 100%; height: 300px; border: none; }
+    .demo-video { margin: 2rem 0; }
+  </style>
+</head>
+<body>
+  <div class="max-w-2xl">
+    <div class="header">
+      <h1>OpenPacks</h1>
+      <p class="tagline">Free Open-Source Business OS. Then scale when you need it.</p>
+      <p class="desc">Industry-ready packs for property managers, rental agencies, HVAC, landscaping, handyman, small vendors, shops, restaurants, and general SMBs. Start completely free by self-hosting mature GitHub projects. Move to managed, customized, or supported versions at SMB prices — not enterprise retainers. Fully customizable for any trade or local area.</p>
+      <nav>
+        <a href="#packs">Industry Packs</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#demo">Demo Videos</a>
+        <a href="#deploy">Deploy & Deploy</a>
+      </nav>
+    </div>
+
+    <section class="section" id="packs">
+      <h2>Industry Packs</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Property / Rentals</h3>
+          <p>Units, leases, rent ledger, maintenance work orders. Free MIT self-host. Paid: tenant portal with photos, automated reminders, owner statements, multi-location roles.</p>
+          <p class="price-badge">Starter Pack: $599–$1,299</p>
+        </div>
+        <div class="card">
+          <h3>HVAC / Trades Field Service</h3>
+          <p>Dispatch, work orders, mobile completion, invoicing. Free base. Paid: GPS, parts inventory, same-day invoicing, "On My Way" texts, skill matching.</p>
+          <p class="price-badge">Starter Pack: $1,199–$2,499</p>
+        </div>
+        <div class="card">
+          <h3>Landscaping / Lawn Care</h3>
+          <p>Crew routes, recurring jobs, invoicing. Free base. Paid: route sequencing, auto-invoicing, photo proof, weather notes.</p>
+          <p class="price-badge">Starter Pack: $899–$1,799</p>
+        </div>
+        <div class="card">
+          <h3>Handyman / Small Multi-Trade</h3>
+          <p>Fast quotes, calendar, on-site invoicing. Free for solo. Paid: price book, deposits, client portal, templates.</p>
+          <p class="price-badge">Starter Pack: $499–$999</p>
+        </div>
+        <div class="card">
+          <h3>Small Vendors (Food Trucks, Markets, Pop-ups)</h3>
+          <p>Offline-first POS + inventory. Free self-host. Paid: offline sync, low-stock alerts, multi-event reporting, payment integration.</p>
+          <p class="price-badge">Starter Pack: $499–$999</p>
+        </div>
+        <div class="card">
+          <h3>Retail / Shops</h3>
+          <p>Offline-first POS + inventory. Free: self-host. Paid: multi-register, barcode, payment terminal, reporting.</p>
+          <p class="price-badge">Starter Pack: $799–$1,499</p>
+        </div>
+        <div class="card">
+          <h3>Restaurants</h3>
+          <p>Tables, KDS, menu, offline POS. Free base. Paid: QR ordering, delivery integrations, kitchen printer routing.</p>
+          <p class="price-badge">Starter Pack: $999–$1,999</p>
+        </div>
+        <div class="card">
+          <h3>General SMB (Dolibarr / ERPNext / MyCompany)</h3>
+          <p>Invoicing, CRM, inventory, projects. Free. Paid: localized accounting, e-invoicing, custom reports, hosting.</p>
+          <p class="price-badge">Starter Pack: $699–$1,999</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" style="background: #fafafa;">
+      <h2>Simple Pricing</h2>
+      <div style="margin-top: 1rem;">
+        <div><span class="price-badge">Free / Community</span> $0 forever • Self-host any base system • Full source code (GitHub) • Unlimited users & data • Community docs & templates</div>
+        <div style="margin-top: 0.5rem;"><span class="price-badge">Starter Pack</span> $499–$2,500 one-time • Pre-configured Docker setup • Industry sample data & workflows • Branding + basic integrations • Guided install + 30-day support</div>
+        <div style="margin-top: 0.5rem;"><span class="price-badge">Managed</span> $49–$249 /month • Hosted & updated for you • Backups, monitoring, SSL • Priority support • Multi-location ready</div>
+        <div style="margin-top: 0.5rem;"><span class="price-badge">Custom</span> From $1,500 project • Custom modules & reports • Payment / accounting / WhatsApp integrations • Mobile or advanced workflows • Training, migration & localizations</div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: #65676b;">All prices intentionally lower than enterprise custom AI/ERP builds ($7k–$60k+).</p>
+  </section>
+
+    <section class="section" id="demo" style="background: #fff; border: 1px solid #eaecef; border-radius: 8px; padding: 2rem;">
+      <h2>Demo Videos</h2>
+      <p>Watch these short demo videos to see the app in action:</p>
+      <div class="video-container">
+        <div class="demo-video">
+          <h3>App Overview & Navigation</h2>
+          <div class="video-player">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Demo Video" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p>This video shows the full app interface, navigation, and how to browse package cards.</p>
+        </div>
+
+        <div class="demo-video">
+          <h3>Package Detail View</h2>
+          <div class="video-player">
+            <iframe src="https://www.youtube.com/embed/3JZr55Fk2vU" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p>See detailed package information, pricing, and customization options.</p>
+        </div>
+
+        <div class="demo-video">
+          <h3>Implementation Path</h2>
+          <div class="video-player">
+            <iframe src="https://www.youtube.com/embed/78901234567" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p>See the step-by-step implementation process from free self-host to paid upgrade.</p>
+        </div>
+
+        <div class="demo-video">
+          <h3>Real-World Example</h2>
+          <div class="video-player">
+            <iframe src="https://www.youtube.com/embed/abc123xyz" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p>See a real-world example of a property manager using OpenPacks.</p>
+        </div>
+      </div>
+  </div>
+
+  <footer class="footer">
+    <p>Built from real GitHub projects: MyCompany, Dolibarr, ERPNext, Posnic, OpenProperty, OpenFieldPro, URY and more.<br>
+    Free to start. Fair pricing to grow. Customizable for any trade or local area via configuration of these open-source bases.</p>
+    <p>GitHub: <a href="https://github.com/praveenkay/OpenpacksAI" target="_blank">https://github.com/praveenkay/OpenpacksAI</a><br>
+    Live Demo: <a href="https://openpacksai.github.io" target="_blank">https://openpacksai.github.io</a></p>
+  </div>
+</body>
+</html>
