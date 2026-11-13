@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenPacks AI — Free Open-Source Business OS for SMBs</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --border:#30363d;
+    --text:#e6edf3; --muted:#8b949e; --accent:#3b82f6; --accent2:#22c55e;
+    --warn:#f59e0b; --paid:#f97316;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 1.25rem}
+
+  /* Nav */
+  header.topbar{position:sticky;top:0;z-index:50;background:rgba(13,17,23,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .topbar-inner{display:flex;align-items:center;gap:1.5rem;padding:.85rem 0}
+  .logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:#fff}
+  .logo span{color:var(--accent)}
+  nav.links{display:flex;gap:1.1rem;font-size:.9rem;margin-left:auto;flex-wrap:wrap}
+  nav.links a{color:var(--muted)}
+  nav.links a:hover{color:#fff;text-decoration:none}
+
+  /* Hero */
+  .hero{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);
+    background:radial-gradient(900px 380px at 50% -10%,rgba(59,130,246,.16),transparent 70%)}
+  .hero h1{font-size:2.6rem;line-height:1.12;margin:0 0 .75rem;letter-spacing:-.03em}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero p.lead{color:var(--muted);font-size:1.05rem;max-width:56rem;margin:0 0 1.5rem}
+  .btnrow{display:flex;gap:.75rem;flex-wrap:wrap}
+  .btn{display:inline-block;padding:.7rem 1.25rem;border-radius:8px;font-weight:600;font-size:.92rem;
+    border:1px solid transparent;cursor:pointer}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#2563eb;text-decoration:none}
+  .btn-ghost{background:transparent;border-color:var(--border);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--muted);text-decoration:none}
+  .badges{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.4rem}
+  .badge{font-size:.75rem;padding:.28rem .6rem;border:1px solid var(--border);
+    border-radius:999px;color:var(--muted);background:var(--panel)}
+
+  /* Sections */
+  section{padding:2.75rem 0;border-bottom:1px solid var(--border)}
+  h2.sec{font-size:1.55rem;margin:0 0 .4rem;letter-spacing:-.02em}
+  p.secsub{color:var(--muted);margin:0 0 1.5rem;font-size:.95rem}
+
+  /* Grid cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.1rem;
+    display:flex;flex-direction:column;gap:.5rem}
+  .card h3{margin:0;font-size:1.02rem}
+  .card .base{font-size:.78rem;color:var(--accent2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .card p{margin:0;font-size:.86rem;color:var(--muted)}
+  .card .packs{margin-top:auto;display:flex;flex-direction:column;gap:.3rem;font-size:.8rem}
+  .card .packs div{display:flex;justify-content:space-between;gap:.5rem}
+  .card .packs .k{color:var(--muted)}
+  .card .packs .v{color:var(--text);font-weight:600;white-space:nowrap}
+
+  /* Pricing */
+  .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+  .tier{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.1rem}
+  .tier.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .tier h3{margin:0 0 .2rem;font-size:1rem}
+  .tier .price{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;margin:.2rem 0 .6rem}
+  .tier .price small{font-size:.78rem;color:var(--muted);font-weight:500}
+  .tier ul{margin:0;padding-left:1.1rem;font-size:.83rem;color:var(--muted)}
+  .tier li{margin:.25rem 0}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:.5rem}
+  th,td{text-align:left;padding:.55rem .6rem;border-bottom:1px solid var(--border)}
+  th{color:var(--muted);font-weight:600;background:var(--panel2)}
+  tr:hover td{background:rgba(59,130,246,.05)}
+
+  /* Filters */
+  .filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem}
+  .chip{padding:.4rem .85rem;border-radius:999px;border:1px solid var(--border);background:transparent;
+    color:var(--muted);font-size:.82rem;cursor:pointer}
+  .chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  /* Calculator */
+  .calc{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.4rem;
+    display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .field{margin-bottom:.9rem}
+  .field label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:.35rem}
+  select,input[type=number]{width:100%;padding:.55rem .7rem;border-radius:8px;border:1px solid var(--border);
+    background:var(--panel2);color:var(--text);font-size:.9rem}
+  .result{background:var(--panel2);border-radius:10px;padding:1.25rem;display:flex;flex-direction:column;
+    justify-content:center;gap:.6rem}
+  .result .big{font-size:2rem;font-weight:800;letter-spacing:-.03em;color:var(--accent2)}
+  .result .row{display:flex;justify-content:space-between;font-size:.88rem;color:var(--muted)}
+  .result .row b{color:var(--text)}
+
+  /* Video */
+  .videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem}
+  .vid{background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .vid video{width:100%;display:block;background:#000}
+  .vid .meta{padding:.85rem 1rem}
+  .vid .meta h3{margin:0 0 .25rem;font-size:.95rem}
+  .vid .meta p{margin:0;font-size:.8rem;color:var(--muted)}
+
+  /* Steps */
+  .steps{counter-reset:s;display:grid;gap:.75rem}
+  .step{display:grid;grid-template-columns:2rem 1fr;gap:.9rem;align-items:start;
+    background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem}
+  .step:before{counter-increment:s;content:counter(s);display:grid;place-items:center;
+    width:2rem;height:2rem;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:.85rem}
+  .step h4{margin:0 0 .15rem;font-size:.92rem}
+  .step p{margin:0;font-size:.83rem;color:var(--muted)}
+  code{background:var(--panel2);border:1px solid var(--border);border-radius:5px;padding:.1rem .35rem;
+    font-size:.82em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  footer{padding:2.5rem 0;color:var(--muted);font-size:.85rem;text-align:center}
+  .footer-links{display:flex;gap:1.25rem;justify-content:center;margin-bottom:.75rem;flex-wrap:wrap}
+  @media(max-width:760px){
+    .hero h1{font-size:1.9rem}
+    .calc{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="logo">Open<span>Packs</span> AI</div>
+    <nav class="links">
+      <a href="#packs">Packs</a>
+      <a href="#pain">Pain Points</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#demos">Demos</a>
+      <a href="#compare">Compare</a>
+      <a href="https://github.com/praveenkay/OpenpacksAI" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Free Open-Source Business OS.<br><em>Then scale when you need it.</em></h1>
+    <p class="lead">Industry-ready packs for property managers, rental agencies, HVAC, landscaping, handyman, small vendors, shops, restaurants and general SMBs. Start completely free by self-hosting mature GitHub projects. Move to managed, customized, or supported versions at SMB prices — not enterprise retainers.</p>
+    <div class="btnrow">
+      <a class="btn btn-primary" href="#packs">Explore Packs</a>
+      <a class="btn btn-ghost" href="#pricing">See Pricing</a>
+      <a class="btn btn-ghost" href="https://github.com/praveenkay/OpenpacksAI" target="_blank" rel="noopener">Clone on GitHub</a>
+    </div>
+    <div class="badges">
+      <span class="badge">8 industry packs</span>
+      <span class="badge">6 mature open-source bases</span>
+      <span class="badge">$0 to start</span>
+      <span class="badge">MIT licensed</span>
+      <span class="badge">Self-host or managed</span>
+    </div>
+  </div>
+</div>
+
+<section id="packs">
+  <div class="wrap">
+    <h2 class="sec">Industry Packs</h2>
+    <p class="secsub">Each pack is a free open-source base, pre-configured. Customize further for any area, local rules, or trade.</p>
+    <div class="filters" id="filters">
+      <button class="chip active" data-f="all">All</button>
+      <button class="chip" data-f="field">Field Service</button>
+      <button class="chip" data-f="property">Property</button>
+      <button class="chip" data-f="retail">Retail / POS</button>
+      <button class="chip" data-f="general">General</button>
+    </div>
+    <div class="grid" id="packGrid"></div>
+  </div>
+</section>
+
+<section id="pain">
+  <div class="wrap">
+    <h2 class="sec">What We Fix First</h2>
+    <p class="secsub">Researched pain points that cost the most money or time. Every pack attacks these first.</p>
+    <div class="grid" id="painGrid"></div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <h2 class="sec">Simple Pricing</h2>
+    <p class="secsub">All prices intentionally lower than enterprise custom AI/ERP builds ($7k–$60k+).</p>
+    <div class="pricing">
+      <div class="tier">
+        <h3>Free / Community</h3>
+        <div class="price">$0 <small>forever</small></div>
+        <ul>
+          <li>Self-host any base system</li>
+          <li>Full source code (GitHub)</li>
+          <li>Unlimited users &amp; data</li>
+          <li>Community docs &amp; templates</li>
+        </ul>
+      </div>
+      <div class="tier featured">
+        <h3>Starter Pack</h3>
+        <div class="price">$499–$2,500 <small>one-time</small></div>
+        <ul>
+          <li>Pre-configured Docker setup</li>
+          <li>Industry sample data &amp; workflows</li>
+          <li>Branding + basic integrations</li>
+          <li>Guided install + 30-day support</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <h3>Managed</h3>
+        <div class="price">$49–$249 <small>/month</small></div>
+        <ul>
+          <li>Hosted &amp; updated for you</li>
+          <li>Backups, monitoring, SSL</li>
+          <li>Priority support</li>
+          <li>Multi-location ready</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <h3>Custom</h3>
+        <div class="price">From $1,500 <small>project</small></div>
+        <ul>
+          <li>Custom modules &amp; reports</li>
+          <li>Payment / accounting / WhatsApp</li>
+          <li>Mobile or advanced workflows</li>
+          <li>Training, migration &amp; localizations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calculator">
+  <div class="wrap">
+    <h2 class="sec">Estimate Your Pack</h2>
+    <p class="secsub">Pick a vertical and scale. The calculator maps it to the researched price bands.</p>
+    <div class="calc">
+      <div>
+        <div class="field">
+          <label for="cVertical">Vertical</label>
+          <select id="cVertical"></select>
+        </div>
+        <div class="field">
+          <label for="cUsers">Users / seats</label>
+          <input id="cUsers" type="number" min="1" max="200" value="5">
+        </div>
+        <div class="field">
+          <label for="cSites">Locations</label>
+          <input id="cSites" type="number" min="1" max="25" value="1">
+        </div>
+        <div class="field">
+          <label for="cManaged">Hosting</label>
+          <select id="cManaged">
+            <option value="self">Self-host (free)</option>
+            <option value="managed" selected>Managed ($49–$249/mo)</option>
+          </select>
+        </div>
+      </div>
+      <div class="result">
+        <div class="row"><span>Starter Pack (one-time)</span><b id="rStarter">—</b></div>
+        <div class="row"><span>Managed (monthly)</span><b id="rManaged">—</b></div>
+        <div class="row"><span>Custom add-ons (est.)</span><b id="rCustom">—</b></div>
+        <div class="big" id="rFirst">—</div>
+        <div class="row"><span>First-year total</span><b id="rYear">—</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="demos">
+  <div class="wrap">
+    <h2 class="sec">Demo Videos</h2>
+    <p class="secsub">Generated walkthroughs of this app: pack browse, pricing calculator, and the full tour.</p>
+    <div class="videos" id="videoGrid"></div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="wrap">
+    <h2 class="sec">Base Systems Comparison</h2>
+    <p class="secsub">Each pack is a configuration of these mature open-source bases.</p>
+    <table>
+      <thead>
+        <tr><th>System</th><th>Best For</th><th>License</th><th>Self-Host Ease</th><th>Maturity</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>MyCompany</td><td>Full ERP + POS</td><td>Apache 2.0</td><td>High</td><td>High</td></tr>
+        <tr><td>Dolibarr</td><td>Micro / Small</td><td>GPL-3.0</td><td>Very High</td><td>High</td></tr>
+        <tr><td>ERPNext</td><td>Growing SMB / Field / Property</td><td>GPL-3.0</td><td>Medium</td><td>Very High</td></tr>
+        <tr><td>OpenProperty</td><td>Landlords / Rentals</td><td>MIT</td><td>High</td><td>Medium</td></tr>
+        <tr><td>Posnic</td><td>Retail / Restaurant / Vendors</td><td>AGPL-3.0</td><td>High</td><td>Medium-High</td></tr>
+        <tr><td>OpenFieldPro</td><td>Field Service (HVAC, Landscaping, Handyman)</td><td>Check repo</td><td>Medium</td><td>Emerging</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="start">
+  <div class="wrap">
+    <h2 class="sec">Implementation Path</h2>
+    <div class="steps">
+      <div class="step"><div><h4>Free self-host from starter repo</h4><p><code>git clone https://github.com/praveenkay/OpenpacksAI</code></p></div></div>
+      <div class="step"><div><h4>Run the stack</h4><p><code>docker compose up -d</code> — base system + AI agent layer on your own hardware.</p></div></div>
+      <div class="step"><div><h4>Deploy 1–2 high-value agents</h4><p>Invoice follow-up, appointment reminders, review monitoring, low-stock alerts.</p></div></div>
+      <div class="step"><div><h4>Upgrade only when value is proven</h4><p>Starter Pack for setup, Managed for hosting + support, Custom for unique workflows.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://github.com/praveenkay/OpenpacksAI" target="_blank" rel="noopener">GitHub Repository</a>
+      <a href="https://praveenkay.github.io/OpenpacksAI/" target="_blank" rel="noopener">Live App</a>
+      <a href="blueprint.pdf" target="_blank" rel="noopener">Product Blueprint (PDF)</a>
+      <a href="README.md" target="_blank" rel="noopener">README</a>
+    </div>
+    <p>Built from real GitHub projects: MyCompany, Dolibarr, ERPNext, Posnic, OpenProperty, OpenFieldPro, URY and more.</p>
+    <p>Free to start. Fair pricing to grow. Customizable for any trade or local area via configuration of these open-source bases.</p>
+  </div>
+</footer>
+
+<script>
+const PACKS = [
+  {id:'property', cat:'property', name:'Property / Rentals', base:'OpenProperty · MIT',
+   desc:'Units, leases, rent ledger, maintenance work orders. Free MIT self-host.',
+   paid:'Tenant portal with photos, automated reminders, owner statements, multi-location.',
+   starter:[599,1299]},
+  {id:'hvac', cat:'field', name:'HVAC / Trades Field Service', base:'OpenFieldPro · Check repo',
+   desc:'Dispatch, work orders, mobile completion, invoicing. Free base.',
+   paid:'GPS, parts inventory, same-day invoicing, “On My Way” texts, skill matching.',
+   starter:[1199,2499]},
+  {id:'landscaping', cat:'field', name:'Landscaping / Lawn Care', base:'OpenFieldPro (recurring)',
+   desc:'Crew routes, recurring jobs, invoicing. Free base.',
+   paid:'Route sequencing, auto-invoicing on completion, photo proof, weather notes.',
+   starter:[899,1799]},
+  {id:'handyman', cat:'field', name:'Handyman / Multi-Trade', base:'OpenFieldPro light · Dolibarr',
+   desc:'Fast quotes, calendar, on-site invoicing. Free for solo operators.',
+   paid:'Price book, deposits, client portal, job templates, multi-crew.',
+   starter:[499,999]},
+  {id:'vendors', cat:'retail', name:'Small Vendors', base:'Posnic · MyCompany (offline)',
+   desc:'Food trucks, market stalls, pop-ups. Offline-first POS + inventory.',
+   paid:'Offline sync, low-stock alerts, multi-event reporting, payments.',
+   starter:[499,999]},
+  {id:'retail', cat:'retail', name:'Retail / Shops', base:'Posnic · MyCompany',
+   desc:'Offline-first POS + inventory. Self-host free.',
+   paid:'Multi-register, barcode, payment terminal, reporting dashboards.',
+   starter:[799,1499]},
+  {id:'restaurants', cat:'retail', name:'Restaurants', base:'URY on ERPNext · Posnic',
+   desc:'Tables, KDS, menu, offline POS. Free base.',
+   paid:'QR ordering, delivery integrations, kitchen printer routing, split/merge.',
+   starter:[999,1999]},
+  {id:'smb', cat:'general', name:'General SMB', base:'Dolibarr · ERPNext · MyCompany',
+   desc:'Invoicing, CRM, inventory, projects. Free full ERP.',
+   paid:'Localized accounting, e-invoicing, custom reports, hosting.',
+   starter:[699,1999]}
+];
+
+const PAINS = [
+  {name:'Property / Rentals', head:'Late rent & maintenance chaos',
+   body:'Rent reconciliation can take 12–15 hrs/week. Requests by text with no tracking. Owner statements go out late. Spreadsheets everywhere.'},
+  {name:'HVAC / Trades', head:'Scheduling waste & delayed invoices',
+   body:'Manual routes waste $3k–$5k/month. Paper tickets sit for days. Techs arrive without parts. Dispatchers burn ~15 hrs/week.'},
+  {name:'Landscaping', head:'Route chaos & recurring billing gaps',
+   body:'Wasted drive time across crews. Invoices delayed days/weeks. Recurring contracts missed or inconsistently billed. Weather changes poorly communicated.'},
+  {name:'Handyman', head:'Admin longer than the job',
+   body:'Quoting and invoicing take longer than small jobs. Missed materials markup and scope creep. Rare same-day invoicing. Disconnected tools.'},
+  {name:'Small Vendors', head:'Offline checkout & perishable waste',
+   body:'Markets need offline-first POS. Fast checkout in tight spaces. Stockouts or waste from poor tracking. Limited real-time visibility.'},
+  {name:'Retail', head:'Stockouts at the counter',
+   body:'56% discover stockouts only when the customer is there. Disconnected POS and inventory. Manual counts waste hours.'},
+  {name:'Restaurants', head:'Table & kitchen blindness',
+   body:'Nobody knows which table is free. Paper tickets jam or arrive late. Slow turnover and inventory guesswork.'},
+  {name:'General SMB', head:'Spreadsheet invoicing',
+   body:'Quotes, invoices, and payments live in disconnected tools. Late payments invisible. Limited reporting.'}
+];
+
+const money = n => '$' + n.toLocaleString('en-US');
+
+function pokerCards(){
+  const g = document.getElementById('packGrid');
+  g.innerHTML = PACKS.map(p => `
+    <div class="card" data-cat="${p.cat}">
+      <h3>${p.name}</h3>
+      <div class="base">${p.base}</div>
+      <p>${p.desc}</p>
+      <p><strong style="color:#f97316;font-weight:600">Paid:</strong> ${p.paid}</p>
+      <div class="packs">
+        <div><span class="k">Starter Pack</span><span class="v">${money(p.starter[0])}–${money(p.starter[1])}</span></div>
+        <div><span class="k">Base system</span><span class="v">Free self-host</span></div>
+      </div>
+    </div>`).join('');
+}
+
+function painCards(){
+  document.getElementById('painGrid').innerHTML = PAINS.map(p => `
+    <div class="card">
+      <h3>${p.name}</h3>
+      <div class="base">${p.head}</div>
+      <p>${p.body}</p>
+    </div>`).join('');
+}
+
+const VIDEOS = [
+  {file:'demos/demo-tour.mp4', title:'Full App Tour', desc:'Pack grid → pain points → pricing → calculator in one pass.'},
+  {file:'demos/demo-packs.mp4', title:'Pack Browsing & Filters', desc:'Filtering packs by category: field service, property, retail, general.'},
+  {file:'demos/demo-calculator.mp4', title:'Pricing Calculator', desc:'Selecting a vertical and computing one-time + monthly + first-year totals.'}
+];
+
+function videoCards(){
+  document.getElementById('videoGrid').innerHTML = VIDEOS.map(v => `
+    <div class="vid">
+      <video src="${v.file}" controls preload="metadata" playsinline></video>
+      <div class="meta"><h3>${v.title}</h3><p>${v.desc}</p></div>
+    </div>`).join('');
+}
+
+// Filters
+document.getElementById('filters').addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if(!b) return;
+  document.querySelectorAll('#filters .chip').forEach(c => c.classList.toggle('active', c===b));
+  const f = b.dataset.f;
+  document.querySelectorAll('#packGrid .card').forEach(c => {
+    c.style.display = (f==='all' || c.dataset.cat===f) ? '' : 'none';
+  });
+});
+
+// Calculator
+function initCalc(){
+  const sel = document.getElementById('cVertical');
+  sel.innerHTML = PACKS.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+  const run = () => {
+    const p = PACKS.find(x => x.id === sel.value);
+    const users = Math.max(1, +document.getElementById('cUsers').value || 1);
+    const sites = Math.max(1, +document.getElementById('cSites').value || 1);
+    const managed = document.getElementById('cManaged').value === 'managed';
+
+    // starter = lower band scaled slightly by sites
+    const starter = Math.round(p.starter[0] * (1 + Math.min(sites-1,.5)*0.35));
+    // managed base by users/sites
+    const managedFee = managed ? Math.min(249, 49 + Math.max(0,users-2)*9 + (sites-1)*40) : 0;
+    // custom estimate = seat/site driven
+    const custom = Math.round(Math.max(0, users-3) * 120 + (sites-1)*750);
+
+    document.getElementById('rStarter').textContent = money(starter);
+    document.getElementById('rManaged').textContent = managed ? money(managedFee) + '/mo' : 'Free (self-host)';
+    document.getElementById('rCustom').textContent = custom ? money(custom) : '—';
+    document.getElementById('rFirst').textContent = money(starter + managedFee*12 + custom);
+    document.getElementById('rYear').textContent = money(starter + managedFee*12 + custom);
+  };
+  ['cVertical','cUsers','cSites','cManaged'].forEach(id =>
+    document.getElementById(id).addEventListener('input', run));
+  run();
+}
+
+pokerCards();
+painCards();
+videoCards();
+initCalc();
+</script>
+</body>
+</html>
