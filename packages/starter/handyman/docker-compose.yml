@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  openpacks-handyman:
+    image: praveenkay/openpacks:starter-handyman
+    restart: unless-stopped
+    ports:
+      - "${OPENPACKS_PORT:-8080}:80"
+    environment:
+      - TIER=starter
+      - VERTICAL=handyman
+    volumes:
+      - handyman-data:/data
+volumes:
+  handyman-data:

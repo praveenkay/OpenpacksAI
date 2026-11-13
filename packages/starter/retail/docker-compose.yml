@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  openpacks-retail:
+    image: praveenkay/openpacks:starter-retail
+    restart: unless-stopped
+    ports:
+      - "${OPENPACKS_PORT:-8080}:80"
+    environment:
+      - TIER=starter
+      - VERTICAL=retail
+    volumes:
+      - retail-data:/data
+volumes:
+  retail-data:

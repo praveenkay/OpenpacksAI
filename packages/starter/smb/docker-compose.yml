@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  openpacks-smb:
+    image: praveenkay/openpacks:starter-smb
+    restart: unless-stopped
+    ports:
+      - "${OPENPACKS_PORT:-8080}:80"
+    environment:
+      - TIER=starter
+      - VERTICAL=smb
+    volumes:
+      - smb-data:/data
+volumes:
+  smb-data:

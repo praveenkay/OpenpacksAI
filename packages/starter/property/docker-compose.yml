@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  openpacks-property:
+    image: praveenkay/openpacks:starter-property
+    restart: unless-stopped
+    ports:
+      - "${OPENPACKS_PORT:-8080}:80"
+    environment:
+      - TIER=starter
+      - VERTICAL=property
+    volumes:
+      - property-data:/data
+volumes:
+  property-data:

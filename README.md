@@ -4,7 +4,7 @@
 
 A freemium packaging system for small and medium businesses, independent shops, locations, service businesses, freelancers, and multi-site operators. Start completely free by self-hosting mature open-source projects from GitHub. Move to managed, customized, or supported versions at SMB prices — not enterprise retainers.
 
-**Core Principle:** Free base systems + Starter Packs ($499–$2,500 one-time) + Managed ($49–$249/mo) + Custom (from $1,500). All prices intentionally lower than enterprise custom AI/ERP builds ($7k–$60k+).
+**Core Principle:** Free base systems + Starter Packs ($299–$1,199 one-time) + Managed ($9–$49/mo) + Custom (from $999). All prices intentionally lower than enterprise custom AI/ERP builds ($7k–$60k+).
 
 ---
 

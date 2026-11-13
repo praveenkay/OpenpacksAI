@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  openpacks-managed:
+    image: praveenkay/openpacks:managed
+    container_name: openpacks-managed
+    restart: unless-stopped
+    ports:
+      - "${OPENPACKS_PORT:-8080}:80"
+    environment:
+      - TIER=managed
+      - DOMAIN=${OPENPACKS_DOMAIN:-localhost}
+    volumes:
+      - openpacks-managed-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  openpacks-managed-data:

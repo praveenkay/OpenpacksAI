@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  openpacks-restaurants:
+    image: praveenkay/openpacks:starter-restaurants
+    restart: unless-stopped
+    ports:
+      - "${OPENPACKS_PORT:-8080}:80"
+    environment:
+      - TIER=starter
+      - VERTICAL=restaurants
+    volumes:
+      - restaurants-data:/data
+volumes:
+  restaurants-data:

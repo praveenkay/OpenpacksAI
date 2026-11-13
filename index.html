@@ -200,7 +200,7 @@
       </div>
       <div class="tier featured">
         <h3>Starter Pack</h3>
-        <div class="price">$499–$2,500 <small>one-time</small></div>
+        <div class="price">$299–$1,199 <small>one-time</small></div>
         <ul>
           <li>Pre-configured Docker setup</li>
           <li>Industry sample data &amp; workflows</li>
@@ -210,7 +210,7 @@
       </div>
       <div class="tier">
         <h3>Managed</h3>
-        <div class="price">$49–$249 <small>/month</small></div>
+        <div class="price">$9–$49 <small>/month</small></div>
         <ul>
           <li>Hosted &amp; updated for you</li>
           <li>Backups, monitoring, SSL</li>
@@ -220,7 +220,7 @@
       </div>
       <div class="tier">
         <h3>Custom</h3>
-        <div class="price">From $1,500 <small>project</small></div>
+        <div class="price">From $999 <small>project</small></div>
         <ul>
           <li>Custom modules &amp; reports</li>
           <li>Payment / accounting / WhatsApp</li>
@@ -234,8 +234,8 @@
 
 <section id="calculator">
   <div class="wrap">
-    <h2 class="sec">Estimate Your Pack</h2>
-    <p class="secsub">Pick a vertical and scale. The calculator maps it to the researched price bands.</p>
+    <h2 class="sec">Estimate Your Cost</h2>
+    <p class="secsub">Pick a vertical and scale. Free tier is always $0. Starter and Managed scale with your needs.</p>
     <div class="calc">
       <div>
         <div class="field">
@@ -244,7 +244,7 @@
         </div>
         <div class="field">
           <label for="cUsers">Users / seats</label>
-          <input id="cUsers" type="number" min="1" max="200" value="5">
+          <input id="cUsers" type="number" min="1" max="200" value="3">
         </div>
         <div class="field">
           <label for="cSites">Locations</label>
@@ -253,15 +253,15 @@
         <div class="field">
           <label for="cManaged">Hosting</label>
           <select id="cManaged">
-            <option value="self">Self-host (free)</option>
-            <option value="managed" selected>Managed ($49–$249/mo)</option>
+            <option value="free" selected>Free — Self-host ($0/mo)</option>
+            <option value="managed">Managed ($9–$49/mo)</option>
           </select>
         </div>
       </div>
       <div class="result">
+        <div class="row"><span>Free tier (self-host)</span><b id="rFree">$0</b></div>
         <div class="row"><span>Starter Pack (one-time)</span><b id="rStarter">—</b></div>
-        <div class="row"><span>Managed (monthly)</span><b id="rManaged">—</b></div>
-        <div class="row"><span>Custom add-ons (est.)</span><b id="rCustom">—</b></div>
+        <div class="row"><span>Managed (monthly)</span><b id="rManaged">$0/mo</b></div>
         <div class="big" id="rFirst">—</div>
         <div class="row"><span>First-year total</span><b id="rYear">—</b></div>
       </div>
@@ -327,35 +327,35 @@ const PACKS = [
   {id:'property', cat:'property', name:'Property / Rentals', base:'OpenProperty · MIT',
    desc:'Units, leases, rent ledger, maintenance work orders. Free MIT self-host.',
    paid:'Tenant portal with photos, automated reminders, owner statements, multi-location.',
-   starter:[599,1299]},
+   starter:[399,799]},
   {id:'hvac', cat:'field', name:'HVAC / Trades Field Service', base:'OpenFieldPro · Check repo',
    desc:'Dispatch, work orders, mobile completion, invoicing. Free base.',
    paid:'GPS, parts inventory, same-day invoicing, “On My Way” texts, skill matching.',
-   starter:[1199,2499]},
+   starter:[599,1199]},
   {id:'landscaping', cat:'field', name:'Landscaping / Lawn Care', base:'OpenFieldPro (recurring)',
    desc:'Crew routes, recurring jobs, invoicing. Free base.',
    paid:'Route sequencing, auto-invoicing on completion, photo proof, weather notes.',
-   starter:[899,1799]},
+   starter:[399,799]},
   {id:'handyman', cat:'field', name:'Handyman / Multi-Trade', base:'OpenFieldPro light · Dolibarr',
    desc:'Fast quotes, calendar, on-site invoicing. Free for solo operators.',
    paid:'Price book, deposits, client portal, job templates, multi-crew.',
-   starter:[499,999]},
+   starter:[299,599]},
   {id:'vendors', cat:'retail', name:'Small Vendors', base:'Posnic · MyCompany (offline)',
    desc:'Food trucks, market stalls, pop-ups. Offline-first POS + inventory.',
    paid:'Offline sync, low-stock alerts, multi-event reporting, payments.',
-   starter:[499,999]},
+   starter:[299,599]},
   {id:'retail', cat:'retail', name:'Retail / Shops', base:'Posnic · MyCompany',
    desc:'Offline-first POS + inventory. Self-host free.',
    paid:'Multi-register, barcode, payment terminal, reporting dashboards.',
-   starter:[799,1499]},
+   starter:[399,799]},
   {id:'restaurants', cat:'retail', name:'Restaurants', base:'URY on ERPNext · Posnic',
    desc:'Tables, KDS, menu, offline POS. Free base.',
    paid:'QR ordering, delivery integrations, kitchen printer routing, split/merge.',
-   starter:[999,1999]},
+   starter:[499,999]},
   {id:'smb', cat:'general', name:'General SMB', base:'Dolibarr · ERPNext · MyCompany',
    desc:'Invoicing, CRM, inventory, projects. Free full ERP.',
    paid:'Localized accounting, e-invoicing, custom reports, hosting.',
-   starter:[699,1999]}
+   starter:[399,899]}
 ];
 
 const PAINS = [
@@ -437,18 +437,16 @@ function initCalc(){
     const sites = Math.max(1, +document.getElementById('cSites').value || 1);
     const managed = document.getElementById('cManaged').value === 'managed';
 
-    // starter = lower band scaled slightly by sites
-    const starter = Math.round(p.starter[0] * (1 + Math.min(sites-1,.5)*0.35));
-    // managed base by users/sites
-    const managedFee = managed ? Math.min(249, 49 + Math.max(0,users-2)*9 + (sites-1)*40) : 0;
-    // custom estimate = seat/site driven
-    const custom = Math.round(Math.max(0, users-3) * 120 + (sites-1)*750);
+    // Starter Pack: lower band, scaled modestly by sites
+    const starter = Math.round(p.starter[0] * (1 + Math.min(sites-1, 2) * 0.15));
+    // Managed: $9 base, scales with users and sites
+    const managedFee = managed ? Math.min(49, 9 + Math.max(0, users-2) * 4 + (sites-1) * 8) : 0;
 
+    document.getElementById('rFree').textContent = '$0';
     document.getElementById('rStarter').textContent = money(starter);
-    document.getElementById('rManaged').textContent = managed ? money(managedFee) + '/mo' : 'Free (self-host)';
-    document.getElementById('rCustom').textContent = custom ? money(custom) : '—';
-    document.getElementById('rFirst').textContent = money(starter + managedFee*12 + custom);
-    document.getElementById('rYear').textContent = money(starter + managedFee*12 + custom);
+    document.getElementById('rManaged').textContent = managed ? money(managedFee) + '/mo' : '$0/mo';
+    document.getElementById('rFirst').textContent = money(starter + managedFee * 12);
+    document.getElementById('rYear').textContent = money(starter + managedFee * 12);
   };
   ['cVertical','cUsers','cSites','cManaged'].forEach(id =>
     document.getElementById(id).addEventListener('input', run));

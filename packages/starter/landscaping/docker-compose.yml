@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  openpacks-landscaping:
+    image: praveenkay/openpacks:starter-landscaping
+    restart: unless-stopped
+    ports:
+      - "${OPENPACKS_PORT:-8080}:80"
+    environment:
+      - TIER=starter
+      - VERTICAL=landscaping
+    volumes:
+      - landscaping-data:/data
+volumes:
+  landscaping-data:
