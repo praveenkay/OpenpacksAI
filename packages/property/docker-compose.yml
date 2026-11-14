@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  property-app:
+    image: openpacks/property:${VERSION:-1.0.0}
+    container_name: openpacks-property
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3000}:80"
+    environment:
+      - TIER=${TIER:-free}
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=${DB_NAME:-property}
+      - DB_USER=${DB_USER:-openpacks}
+      - DB_PASS=${DB_PASS:-openpacks}
+      - APP_URL=${APP_URL:-http://localhost:3000}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - property-data:/var/www/data
+  db:
+    image: postgres:16-alpine
+    container_name: openpacks-property-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${DB_NAME:-property}
+      - POSTGRES_USER=${DB_USER:-openpacks}
+      - POSTGRES_PASSWORD=${DB_PASS:-openpacks}
+    volumes:
+      - property-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "openpacks"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+  property-data:
+  property-db:

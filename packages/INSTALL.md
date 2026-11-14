@@ -4,39 +4,34 @@ One-command installers for every tier. Works on macOS, Linux, Windows (WSL/Git B
 
 ---
 
-## Free Tier — $0 Forever
+## Master Installation Wizard
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/praveenkay/OpenpacksAI/main/scripts/install/free.sh | bash
+curl -fsSL https://raw.githubusercontent.com/praveenkay/OpenpacksAI/main/installer/install.sh | bash
 ```
 
-Or manually:
-```bash
-git clone https://github.com/praveenkay/OpenpacksAI
-cd OpenpacksAI/packages/free
-cp .env.example .env
-docker compose up -d
-```
-
-Then visit: `http://localhost:8080`
+The wizard prompts you to:
+1. Select your industry pack (Property, HVAC, Landscaping, Handyman, Small Vendors, Retail, Restaurants, General SMB)
+2. Select your tier (Free, Starter, Managed)
+3. Enter your company name and domain
+4. Downloads the pack, configures it, and starts it
 
 ---
 
-## Starter Pack — $49–$2,500 One-Time
+## Per-Pack Installers
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/praveenkay/OpenpacksAI/main/scripts/install/starter.sh | bash
-```
+Each pack has its own one-command installer:
 
-The installer prompts you to select your industry vertical, then downloads the pre-configured pack with sample data, branding, and integrations.
-
----
-
-## Managed — $9–$49/Month
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/praveenkay/OpenpacksAI/main/scripts/install/managed.sh | bash
-```
+| Pack | Install Command |
+|------|----------------|
+| Property | `curl -fsSL .../packages/property/install.sh \| bash` |
+| HVAC | `curl -fsSL .../packages/hvac/install.sh \| bash` |
+| Landscaping | `curl -fsSL .../packages/landscaping/install.sh \| bash` |
+| Handyman | `curl -fsSL .../packages/handyman/install.sh \| bash` |
+| Small Vendors | `curl -fsSL .../packages/vendors/install.sh \| bash` |
+| Retail | `curl -fsSL .../packages/retail/install.sh \| bash` |
+| Restaurants | `curl -fsSL .../packages/restaurants/install.sh \| bash` |
+| General SMB | `curl -fsSL .../packages/smb/install.sh \| bash` |
 
 ---
 
@@ -44,10 +39,10 @@ curl -fsSL https://raw.githubusercontent.com/praveenkay/OpenpacksAI/main/scripts
 
 | Tier | Price | What You Get |
 |------|-------|-------------|
-| **Free** | $0 forever | Self-host any base system, full source code, unlimited users & data, community docs & templates |
-| **Starter Pack** | $49–$2,500 one-time | Pre-configured Docker setup, industry sample data & workflows, branding + basic integrations, guided install + 30-day support |
-| **Managed** | $9–$49/month | Hosted & updated for you, backups, monitoring, SSL, priority support, multi-location ready |
-| **Custom** | From $1,500 project | Custom modules & reports, payment/accounting/WhatsApp integrations, mobile or advanced workflows, training, migration & localizations |
+| **Free** | $0 forever | Self-host any base system, full source code, unlimited users & data |
+| **Starter Pack** | $299–$1,199 one-time | Pre-configured Docker setup, industry sample data, branding, 30-day support |
+| **Managed** | $9–$49/month | Hosted & updated for you, backups, monitoring, SSL, priority support |
+| **Custom** | From $999 project | Custom modules, integrations, training, migration |
 
 ---
 
@@ -55,25 +50,25 @@ curl -fsSL https://raw.githubusercontent.com/praveenkay/OpenpacksAI/main/scripts
 
 ```
 packages/
-├── free/
-│   ├── docker-compose.yml    # Free tier stack
-│   └── README.md
-├── starter/
-│   ├── docker-compose.yml    # Generic starter stack
-│   ├── README.md
-│   └── {property,hvac,landscaping,handyman,vendors,retail,restaurants,smb}/
-│       └── docker-compose.yml    # Per-vertical starter config
-└── managed/
-    ├── docker-compose.yml    # Managed hosting stack
-    └── README.md
+├── property/         — Property / Rentals (OpenProperty)
+├── hvac/             — HVAC / Trades (OpenFieldPro)
+├── landscaping/      — Lawn Care (OpenFieldPro recurring)
+├── handyman/         — Multi-Trade (OpenFieldPro / Dolibarr)
+├── vendors/          — Small Vendors (Posnic / MyCompany offline)
+├── retail/           — Retail / Shops (Posnic / MyCompany)
+├── restaurants/      — Restaurants (URY / Posnic)
+├── smb/              — General SMB (Dolibarr / ERPNext / MyCompany)
+├── free/             — Free tier base
+├── starter/          — Starter tier base
+└── managed/          — Managed tier base
 ```
 
 ---
 
 ## Cross-Platform Support
 
-- **Web**: All packages run in Docker containers, accessible via browser at `http://localhost:8080`
+- **Web**: All packages run in Docker containers, accessible via browser
 - **macOS**: Docker Desktop or `brew install --cask docker`
-- **Linux**: `apt install docker.io docker-compose` or use Docker's official install script
+- **Linux**: `apt install docker.io docker-compose`
 - **Windows**: Docker Desktop for Windows, or WSL2 with Docker
 - **Mobile**: PWA-ready — add to home screen from the web app

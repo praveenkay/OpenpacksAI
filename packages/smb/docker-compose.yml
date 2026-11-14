@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  smb-app:
+    image: openpacks/smb:${VERSION:-1.0.0}
+    container_name: openpacks-smb
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3007}:80"
+    environment:
+      - TIER=${TIER:-free}
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME:-smb}
+      - DB_USER=${DB_USER:-openpacks}
+      - DB_PASS=${DB_PASS:-openpacks}
+      - APP_URL=${APP_URL:-http://localhost:3007}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - smb-data:/var/www/data
+  db:
+    image: postgres:16-alpine
+    container_name: openpacks-smb-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${DB_NAME:-smb}
+      - POSTGRES_USER=${DB_USER:-openpacks}
+      - POSTGRES_PASSWORD=${DB_PASS:-openpacks}
+    volumes:
+      - smb-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "openpacks"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+  smb-data:
+  smb-db:

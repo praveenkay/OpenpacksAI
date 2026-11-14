@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  restaurants-app:
+    image: openpacks/restaurants:${VERSION:-1.0.0}
+    container_name: openpacks-restaurants
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3006}:80"
+    environment:
+      - TIER=${TIER:-free}
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME:-restaurants}
+      - DB_USER=${DB_USER:-openpacks}
+      - DB_PASS=${DB_PASS:-openpacks}
+      - APP_URL=${APP_URL:-http://localhost:3006}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - restaurants-data:/var/www/data
+  db:
+    image: postgres:16-alpine
+    container_name: openpacks-restaurants-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${DB_NAME:-restaurants}
+      - POSTGRES_USER=${DB_USER:-openpacks}
+      - POSTGRES_PASSWORD=${DB_PASS:-openpacks}
+    volumes:
+      - restaurants-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "openpacks"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+  restaurants-data:
+  restaurants-db:

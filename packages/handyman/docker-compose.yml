@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  handyman-app:
+    image: openpacks/handyman:${VERSION:-1.0.0}
+    container_name: openpacks-handyman
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3003}:80"
+    environment:
+      - TIER=${TIER:-free}
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME:-handyman}
+      - DB_USER=${DB_USER:-openpacks}
+      - DB_PASS=${DB_PASS:-openpacks}
+      - APP_URL=${APP_URL:-http://localhost:3003}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - handyman-data:/var/www/data
+  db:
+    image: postgres:16-alpine
+    container_name: openpacks-handyman-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${DB_NAME:-handyman}
+      - POSTGRES_USER=${DB_USER:-openpacks}
+      - POSTGRES_PASSWORD=${DB_PASS:-openpacks}
+    volumes:
+      - handyman-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "openpacks"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+  handyman-data:
+  handyman-db:

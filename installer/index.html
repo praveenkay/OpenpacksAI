@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0d1117">
+<title>OpenPacks — Install</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --border:#30363d;
+    --text:#e6edf3; --muted:#8b949e; --accent:#3b82f6; --accent2:#22c55e;
+    --warn:#f59e0b; --danger:#ef4444; --free:#22c55e; --starter:#3b82f6; --managed:#f59e0b;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  a{color:var(--accent);text-decoration:none}
+  .app{max-width:640px;margin:0 auto;padding:0 1.1rem 3rem}
+
+  .brand{text-align:center;padding:1.8rem 0 1rem}
+  .brand .logo{font-weight:800;font-size:1.6rem;letter-spacing:-.02em}
+  .brand .logo span{color:var(--accent)}
+  .brand .sub{color:var(--muted);font-size:.85rem}
+
+  /* progress */
+  .progress{display:flex;align-items:center;gap:.4rem;margin:1.2rem 0 1.6rem}
+  .pdot{flex:1;height:4px;border-radius:3px;background:var(--border)}
+  .pdot.on{background:var(--accent)}
+  .plabel{color:var(--muted);font-size:.75rem;margin-bottom:.5rem;text-align:center}
+
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:1.3rem;margin-bottom:1rem}
+  .card h2{margin:0 0 .3rem;font-size:1.25rem;letter-spacing:-.01em}
+  .card p.desc{margin:0 0 1.1rem;color:var(--muted);font-size:.9rem}
+
+  /* choices */
+  .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem}
+  .opt{background:var(--panel2);border:1.5px solid var(--border);border-radius:12px;padding:.9rem;
+    cursor:pointer;transition:.15s;display:flex;flex-direction:column;gap:.35rem}
+  .opt:hover{border-color:var(--muted)}
+  .opt.sel{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .opt .ic{font-size:1.6rem}
+  .opt .nm{font-weight:700;font-size:.95rem}
+  .opt .bs{font-size:.72rem;color:var(--muted);line-height:1.4}
+  .opt .pr{font-size:.72rem;font-weight:600;margin-top:.15rem}
+  .opt .pr.free{color:var(--free)} .opt .pr.st{color:var(--starter)} .opt .pr.mg{color:var(--managed)}
+
+  .field{margin-bottom:.95rem}
+  .field label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:.35rem}
+  input,select{width:100%;padding:.7rem .8rem;border-radius:9px;border:1px solid var(--border);
+    background:var(--panel2);color:var(--text);font-size:.95rem}
+  input:focus,select:focus{outline:none;border-color:var(--accent)}
+  .optrow{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+  .hint{font-size:.75rem;color:var(--muted);margin-top:.35rem}
+
+  /* buttons */
+  .btns{display:flex;gap:.7rem;margin-top:1.3rem}
+  .btn{flex:1;padding:.85rem 1rem;border-radius:10px;font-weight:700;font-size:.95rem;
+    border:1px solid transparent;cursor:pointer;text-align:center}
+  .btn-p{background:var(--accent);color:#fff}
+  .btn-p:disabled{background:var(--border);color:var(--muted);cursor:not-allowed}
+  .btn-g{background:transparent;border-color:var(--border);color:var(--text)}
+  .btn-w{width:100%;background:var(--accent2);color:#04120a;border:none}
+
+  /* terminal */
+  .term{background:#010409;border:1px solid var(--border);border-radius:10px;padding:1rem;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem;
+    line-height:1.7;overflow-x:auto;position:relative;word-break:break-word}
+  .term .c{color:#58a6ff} .term .ok{color:var(--accent2)} .term .warn{color:var(--warn)}
+  .term .lbl{color:var(--muted);display:block;margin-bottom:.5rem}
+  .copy{position:absolute;top:.6rem;right:.6rem;background:var(--panel2);border:1px solid var(--border);
+    color:var(--muted);border-radius:6px;padding:.25rem .6rem;font-size:.72rem;cursor:pointer}
+  .copy:hover{color:#fff;border-color:var(--muted)}
+
+  .devrow{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:.8rem}
+  .dev{background:var(--panel2);border:1.5px solid var(--border);border-radius:10px;padding:.7rem .4rem;
+    text-align:center;cursor:pointer;transition:.15s}
+  .dev:hover{border-color:var(--muted)}
+  .dev.sel{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .dev .ic{font-size:1.4rem} .dev .nm{font-size:.72rem;color:var(--muted);margin-top:.2rem}
+  .dev.sel .nm{color:var(--text)}
+
+  .summary{display:flex;flex-direction:column;gap:.5rem}
+  .summary .row{display:flex;justify-content:space-between;font-size:.88rem;padding:.4rem 0;border-bottom:1px solid var(--border)}
+  .summary .row:last-child{border-bottom:none}
+  .summary .k{color:var(--muted)} .summary .v{font-weight:600}
+
+  .done{text-align:center;padding:2rem 1rem}
+  .done .ic{font-size:3rem}
+  .done h2{margin:.5rem 0 .3rem}
+  .note{background:var(--panel2);border:1px solid var(--border);border-radius:9px;padding:.8rem;
+    font-size:.8rem;color:var(--muted);text-align:left;margin-top:1rem}
+  .hidden{display:none}
+  @media(max-width:420px){.opts{grid-template-columns:1fr}.optrow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="brand">
+    <div class="logo">Open<span>Packs</span></div>
+    <div class="sub">Install your business system — pick a pack, pick your device, and go.</div>
+  </div>
+
+  <div class="plabel" id="plabel">Step 1 of 4</div>
+  <div class="progress" id="prog">
+    <div class="pdot on" data-i="0"></div>
+    <div class="pdot" data-i="1"></div>
+    <div class="pdot" data-i="2"></div>
+    <div class="pdot" data-i="3"></div>
+  </div>
+
+  <!-- STEP 1: choose device -->
+  <div class="card" data-step="0">
+    <h2>Where are you installing?</h2>
+    <p class="desc">OpenPacks runs anywhere Docker runs. Pick the device you're using right now.</p>
+    <div class="devrow" id="devices">
+      <div class="dev" data-dev="Web"><div class="ic">🌐</div><div class="nm">Web / Server</div></div>
+      <div class="dev" data-dev="macOS"><div class="ic"></div><div class="nm">macOS</div></div>
+      <div class="dev" data-dev="Windows"><div class="ic">🪟</div><div class="nm">Windows</div></div>
+      <div class="dev" data-dev="Linux"><div class="ic">🐧</div><div class="nm">Linux</div></div>
+    </div>
+    <div class="btns"><button class="btn btn-p" data-next disabled>Continue →</button></div>
+  </div>
+
+  <!-- STEP 2: choose pack -->
+  <div class="card hidden" data-step="1">
+    <h2>Choose your industry pack</h2>
+    <p class="desc">Each pack is a pre-configured open-source business system for your trade.</p>
+    <div class="opts" id="packOpts"></div>
+    <div class="btns">
+      <button class="btn btn-g" data-back>← Back</button>
+      <button class="btn btn-p" data-next disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: choose tier + details -->
+  <div class="card hidden" data-step="2">
+    <h2>Pick your tier &amp; details</h2>
+    <p class="desc">Start free, then upgrade when it earns its keep.</p>
+    <div class="opts" id="tierOpts" style="grid-template-columns:1fr">
+      <div class="opt" data-tier="free"><div class="ic">🆓</div><div class="nm">Free / Community</div>
+        <div class="pr free">$0 forever</div>
+        <div class="bs">Self-host any base system · full source · unlimited users &amp; data · community docs.</div></div>
+      <div class="opt" data-tier="starter"><div class="ic">🚀</div><div class="nm">Starter Pack</div>
+        <div class="pr st">$299–$1,199 one-time</div>
+        <div class="bs">Pre-configured Docker setup · industry sample data · branding · guided install + 30-day support.</div></div>
+      <div class="opt" data-tier="managed"><div class="ic">☁️</div><div class="nm">Managed</div>
+        <div class="pr mg">$9–$49 /month</div>
+        <div class="bs">Hosted &amp; updated for you · backups, monitoring, SSL · priority support · multi-location.</div></div>
+    </div>
+    <div class="field" style="margin-top:1rem">
+      <label for="company">Business / company name</label>
+      <input id="company" type="text" placeholder="e.g. Cedar Grove Property" autocomplete="off">
+    </div>
+    <div class="optrow">
+      <div class="field">
+        <label for="domain">Domain / URL</label>
+        <input id="domain" type="text" placeholder="localhost" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="port">Port</label>
+        <input id="port" type="number" placeholder="3000" min="1" max="65535">
+      </div>
+    </div>
+    <div class="btns">
+      <button class="btn btn-g" data-back>← Back</button>
+      <button class="btn btn-p" data-next disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: run install -->
+  <div class="card hidden" data-step="3">
+    <h2>Run the install</h2>
+    <p class="desc">One command. It checks Docker, downloads your pack, sets it up, and starts it.</p>
+    <div class="term" id="term">
+      <button class="copy" id="copyBtn">Copy</button>
+      <span class="lbl">$ openpacks install</span>
+      <span id="cmdOut"></span>
+    </div>
+    <div class="note" id="devNote"></div>
+    <div class="btns" style="margin-top:1rem">
+      <button class="btn btn-g" data-back>← Back</button>
+      <button class="btn btn-w" id="finishBtn">✓ I ran it — finish</button>
+    </div>
+  </div>
+
+  <!-- DONE -->
+  <div class="card hidden" data-step="4">
+    <div class="done">
+      <div class="ic">🎉</div>
+      <h2 id="doneTitle">You're all set</h2>
+      <p class="desc" id="doneDesc"></p>
+      <div class="summary" id="doneSummary"></div>
+      <div class="note" id="doneNote"></div>
+      <button class="btn btn-g" style="margin-top:1.2rem" id="restart">Start over</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const PACKS = [
+  {id:'property', ic:'', nm:'Property / Rentals', bs:'Units, leases, rent ledger, maintenance work orders.', base:'OpenProperty · MIT', pr:['$399','$799']},
+  {id:'hvac', ic:'❄️', nm:'HVAC / Trades', bs:'Dispatch, work orders, GPS, parts, same-day invoicing.', base:'OpenFieldPro · ERPNext Field', pr:['$599','$1,199']},
+  {id:'landscaping', ic:'🌱', nm:'Landscaping', bs:'Crew routes, recurring jobs, auto-invoicing, photo proof.', base:'OpenFieldPro · recurring', pr:['$399','$799']},
+  {id:'handyman', ic:'🔧', nm:'Handyman', bs:'Fast quotes, calendar, on-site invoicing, price book.', base:'OpenFieldPro · Dolibarr', pr:['$299','$599']},
+  {id:'vendors', ic:'🚚', nm:'Small Vendors', bs:'Offline-first POS + inventory for markets & pop-ups.', base:'Posnic · MyCompany', pr:['$299','$599']},
+  {id:'retail', ic:'🛒', nm:'Retail / Shops', bs:'POS + inventory, barcode, multi-register, reporting.', base:'Posnic · MyCompany', pr:['$399','$799']},
+  {id:'restaurants', ic:'🍽️', nm:'Restaurants', bs:'Tables, KDS, menu, QR ordering, delivery, kitchen routing.', base:'URY · Posnic', pr:['$499','$999']},
+  {id:'smb', ic:'📊', nm:'General SMB', bs:'Invoicing, CRM, inventory, projects, accounting, e-invoicing.', base:'Dolibarr · ERPNext', pr:['$399','$899']}
+];
+const TIER_PRICE = {free:'$0 forever', starter:'$299–$1,199 one-time', managed:'$9–$49 /month'};
+const RAW = 'https://raw.githubusercontent.com/praveenkay/OpenpacksAI/main/packages/';
+
+const state = {dev:null, pack:null, tier:null};
+let cur = 0;
+
+function el(s){return document.querySelector(s)}
+function els(s){return [...document.querySelectorAll(s)]}
+
+function setStep(n){
+  cur = n;
+  els('.card').forEach(c=>c.classList.add('hidden'));
+  const active = document.querySelector(`.card[data-step="${n}"]`);
+  if(active) active.classList.remove('hidden');
+  els('.pdot').forEach(d=>d.classList.toggle('on', +d.dataset.i < n || (n===4)));
+  const labels = ['Step 1 of 4','Step 2 of 4','Step 3 of 4','Step 4 of 4','Done'];
+  el('#plabel').textContent = labels[n] || '';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// render pack options
+el('#packOpts').innerHTML = PACKS.map(p=>`
+  <div class="opt" data-pack="${p.id}">
+    <div class="ic">${p.ic}</div>
+    <div class="nm">${p.nm}</div>
+    <div class="bs">${p.bs}<br><span style="color:#8b949e">${p.base}</span></div>
+    <div class="pr free">Free · Starter ${p.pr[0]}–${p.pr[1]}</div>
+  </div>`).join('');
+
+// device selection
+el('#devices').addEventListener('click', e=>{
+  const d = e.target.closest('.dev'); if(!d) return;
+  els('.dev').forEach(x=>x.classList.remove('sel'));
+  d.classList.add('sel'); state.dev = d.dataset.dev;
+  const nb = document.querySelector('[data-step="0"] [data-next]'); if(nb) nb.disabled = false;
+});
+
+// pack selection
+el('#packOpts').addEventListener('click', e=>{
+  const d = e.target.closest('.opt'); if(!d) return;
+  els('#packOpts .opt').forEach(x=>x.classList.remove('sel'));
+  d.classList.add('sel'); state.pack = d.dataset.pack;
+  const nb = document.querySelector('[data-step="1"] [data-next]'); if(nb) nb.disabled = false;
+});
+
+// tier selection
+el('#tierOpts').addEventListener('click', e=>{
+  const d = e.target.closest('.opt'); if(!d) return;
+  els('#tierOpts .opt').forEach(x=>x.classList.remove('sel'));
+  d.classList.add('sel'); state.tier = d.dataset.tier;
+  buildCommand();
+  const nb = document.querySelector('[data-step="2"] [data-next]'); if(nb) nb.disabled = false;
+});
+
+['company','domain','port'].forEach(id=>el('#'+id).addEventListener('input', buildCommand));
+
+function buildCommand(){
+  if(!state.tier) return;
+  const pack = state.pack;
+  const port = el('#port').value || (pack ? (PACKS.find(p=>p.id===pack)||{}).id : '3000');
+  const dev = state.dev || 'Web';
+  let cmd;
+  if(dev === 'Windows')
+    cmd = `iwr -useb https://raw.githubusercontent.com/praveenkay/OpenpacksAI/main/installer/install.ps1 | iex`;
+  else
+    cmd = `curl -fsSL https://raw.githubusercontent.com/praveenkay/OpenpacksAI/main/installer/install.sh | bash`;
+  el('#cmdOut').textContent = cmd;
+  const notes = {
+    'Web / Server':'Make sure Docker is running on the server. For production, add an SSL cert (Caddy or certbot) and keep the DB port off the public internet.',
+    'macOS':'Install Docker Desktop first (docker.com/products/docker-desktop). The wizard detects it and proceeds.',
+    'Windows':'Uses Docker Desktop with WSL2. If PowerShell blocks scripts, run: Set-ExecutionPolicy -Scope Process Bypass',
+    'Linux':'Install Docker: curl -fsSL get.docker.com | sh — then the wizard handles the rest.'
+  };
+  el('#devNote').textContent = 'Note: ' + (notes[dev]||'');
+}
+
+// navigation
+document.addEventListener('click', e=>{
+  if(e.target.matches('[data-next]')){
+    const step = e.target.closest('.card').dataset.step;
+    const n = +step + 1;
+    if(n===3){ el('#port').placeholder = statePackPort(); }
+    setStep(n);
+  }
+  if(e.target.matches('[data-back]')){
+    const step = e.target.closest('.card').dataset.step;
+    if(+step>0) setStep(+step-1);
+  }
+});
+
+function statePackPort(){
+  const p = PACKS.find(x=>x.id===state.pack);
+  const map={property:'3000',hvac:'3001',landscaping:'3002',handyman:'3003',vendors:'3004',retail:'3005',restaurants:'3006',smb:'3007'};
+  return map[state.pack] || '3000';
+}
+
+// copy
+el('#copyBtn').addEventListener('click', ()=>{
+  const t = el('#cmdOut').textContent;
+  if(navigator.clipboard) navigator.clipboard.writeText(t).then(()=>{
+    el('#copyBtn').textContent='Copied ✓'; setTimeout(()=>el('#copyBtn').textContent='Copy',1500);
+  });
+});
+
+// finish
+el('#finishBtn').addEventListener('click', ()=>{
+  const p = PACKS.find(x=>x.id===state.pack);
+  el('#doneTitle').textContent = `${p? p.nm : 'Your'} ${state.tier==='free'?'free install':'setup'} is on its way`;
+  el('#doneDesc').textContent = 'Open the URL below once Docker finishes pulling your pack. First login: admin / admin123';
+  const port = el('#port').value || statePackPort();
+  const rows = [
+    ['Pack', p? p.nm : state.pack],
+    ['Base system', p? p.base : ''],
+    ['Tier', state.tier.charAt(0).toUpperCase()+state.tier.slice(1)],
+    ['Device', state.dev],
+    ['Business', el('#company').value || '—'],
+    ['URL', `http://localhost:${port}`]
+  ];
+  el('#doneSummary').innerHTML = rows.map(r=>`<div class="row"><span class="k">${r[0]}</span><span class="v">${r[1]}</span></div>`).join('');
+  el('#doneNote').innerHTML = `
+    <strong>Tier:</strong> ${TIER_PRICE[state.tier]}<br><br>
+    <strong>What happens next:</strong><br>
+    1. Docker pulls the base image and starts your pack + database.<br>
+    2. On first run it creates the admin account (admin / admin123) — change it immediately.<br>
+    3. Starter/Managed tiers add branding, sample data, and support. For production, put SSL in front (Caddy/certbot) and keep the DB port private.
+  `;
+  setStep(4);
+});
+
+el('#restart').addEventListener('click', ()=>{
+  state.dev=null; state.pack=null; state.tier=null; cur=0;
+  els('.opt,.dev').forEach(x=>x.classList.remove('sel'));
+  els('[data-next]').forEach(b=>b.disabled=true);
+  el('#company').value=''; el('#domain').value=''; el('#port').value='';
+  setStep(0);
+});
+
+setStep(0);
+</script>
+</body>
+</html>
