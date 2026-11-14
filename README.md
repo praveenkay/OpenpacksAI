@@ -189,3 +189,43 @@ Built from real GitHub projects: MyCompany, Dolibarr, ERPNext, Posnic, OpenPrope
 ## How to Engage
 
 Primary call-to-action: **Get Started — Free Self-Host Now** (see landing page). Clone a starter repo, run `docker compose up`, deploy agents for common tasks (invoice follow-ups, appointment reminders, review monitoring, inventory alerts, voice-to-report field notes, lead qualification). Upgrade to managed or paid packs when value is proven.
+
+
+### Installation Wizard (Any Device)
+
+Pick your industry pack, your tier, and your device. The wizard handles the rest.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/praveenkay/OpenpacksAI/main/installer/install.sh | bash
+```
+
+Or use the web wizard: https://praveenkay.github.io/OpenpacksAI/installer/index.html
+
+Each industry pack has its own one-command installer:
+
+| Pack | Install Command | Demo Video |
+|------|----------------|------------|
+| Property | `curl -fsSL .../packages/property/install.sh | bash` | [▶](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-property.mp4) |
+| HVAC | `curl -fsSL .../packages/hvac/install.sh | bash` | [▶](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-hvac.mp4) |
+| Landscaping | `curl -fsSL .../packages/landscaping/install.sh | bash` | [▶](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-landscaping.mp4) |
+| Handyman | `curl -fsSL .../packages/handyman/install.sh | bash` | [▶](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-handyman.mp4) |
+| Small Vendors | `curl -fsSL .../packages/vendors/install.sh | bash` | [▶](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-vendors.mp4) |
+| Retail | `curl -fsSL .../packages/retail/install.sh | bash` | [▶](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-retail.mp4) |
+| Restaurants | `curl -fsSL .../packages/restaurants/install.sh | bash` | [▶](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-restaurants.mp4) |
+| General SMB | `curl -fsSL .../packages/smb/install.sh | bash` | [▶](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-smb.mp4) |
+
+### Demo Videos
+
+| Video | Description |
+|-------|-------------|
+| [demo-install-wizard.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-install-wizard.mp4) | Full installation wizard walkthrough |
+| [demo-pack-property.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-property.mp4) | Property / Rentals pack console |
+| [demo-pack-hvac.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-hvac.mp4) | HVAC / Trades pack console |
+| [demo-pack-landscaping.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-landscaping.mp4) | Landscaping pack console |
+| [demo-pack-handyman.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-handyman.mp4) | Handyman pack console |
+| [demo-pack-vendors.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-vendors.mp4) | Small Vendors pack console |
+| [demo-pack-retail.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-retail.mp4) | Retail pack console |
+| [demo-pack-restaurants.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-restaurants.mp4) | Restaurants pack console |
+| [demo-pack-smb.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-pack-smb.mp4) | General SMB pack console |
+| [demo-tour.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-tour.mp4) | Full product tour |
+| [demo-calculator.mp4](https://praveenkay.github.io/OpenpacksAI/demos/demo-calculator.mp4) | Pricing calculator walkthrough |

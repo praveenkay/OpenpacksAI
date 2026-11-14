@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenPacks — Property / Rentals Pack</title>
+<style>
+:root{--accent:#3b82f6;--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--border:#30363d;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:1.4rem 1.2rem 3rem}
+.top{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem;
+background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.logo{font-weight:800;font-size:1.25rem} .logo b{color:var(--accent)}
+.badge{font-size:.72rem;color:var(--muted);text-align:right}
+.hero{padding:1.6rem 0 .8rem;display:flex;gap:1rem;align-items:center}
+.hero .big{font-size:2.6rem} .hero h1{margin:0;font-size:1.7rem;letter-spacing:-.01em}
+.hero .sub{color:var(--muted);font-size:.92rem}
+.tag{margin-left:auto;background:var(--panel2);border:1px solid var(--border);border-radius:99px;
+padding:.4rem .9rem;font-size:.8rem;color:var(--accent);white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:1.2rem 0}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.kpi .v{font-size:1.5rem;font-weight:800} .kpi .k{color:var(--muted);font-size:.78rem}
+.kpi:first-child{border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:.9rem}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.1rem}
+.card h2{margin:0 0 .8rem;font-size:1rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{text-align:left;color:var(--muted);font-weight:600;padding:.4rem .5rem;border-bottom:1px solid var(--border);font-size:.72rem;text-transform:uppercase}
+td{padding:.55rem .5rem;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+td .st{color:var(--accent);font-weight:600}
+.feed li{list-style:none;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.feed li:last-child{border-bottom:none} .feed .t{color:var(--muted);font-size:.72rem;display:block}
+.feed ul{margin:0;padding:0}
+.foot{margin-top:1.4rem;padding:1.2rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.foot code{background:var(--panel2);padding:.2rem .5rem;border-radius:5px;font-size:.78rem;color:var(--accent)}
+.priceline{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.7rem}
+.pill{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:.75rem}
+.pill b{color:var(--accent)}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero{flex-direction:column;align-items:flex-start}}
+</style></head><body><div class="wrap">
+<div class="top"><div class="logo">Open<b>Packs</b></div>
+<div class="badge">Property / Rentals Pack<br>Live console preview</div></div>
+<div class="hero"><div class="big">🏢</div>
+<div><h1>Property / Rentals</h1><div class="sub">OpenProperty · MIT · Port 3000</div></div>
+<div class="tag">● Live — http://localhost:3000</div></div>
+<div class="kpis">
+<div class="kpi"><div class="v">142</div><div class="k">Total Units</div></div><div class="kpi"><div class="v">94%</div><div class="k">Occupancy</div></div><div class="kpi"><div class="v">$241,800</div><div class="k">Rent Collected</div></div><div class="kpi"><div class="v">7</div><div class="k">Open Work Orders</div></div>
+</div>
+<div class="grid">
+<div class="card"><h2>Live board</h2>
+<table><thead><tr><th>Unit</th><th>Tenant</th><th>Rent</th><th>Status</th><th>Notes</th></tr></thead><tbody>
+<tr><td>A-102</td><td>D. Rivera</td><td>$1,850</td><td>Paid</td><td>Lease renews in 32d</td></tr><tr><td>B-04</td><td>M. Okafor</td><td>$2,200</td><td>Paid</td><td>—</td></tr><tr><td>C-15</td><td>L. Tran</td><td>$1,450</td><td>7d late</td><td>Reminded</td></tr><tr><td>A-07</td><td>— Vacant —</td><td>$1,900</td><td>—</td><td>Showing today 1:00</td></tr><tr><td>D-02</td><td>S. Patel</td><td>$2,600</td><td>Paid</td><td>HVAC ticket #4821</td></tr>
+</tbody></table></div>
+<div class="card"><h2>Activity feed</h2>
+<ul class="feed"><li><span class="t">10:24</span>Rent reminder auto-sent to L. Tran (C-15)</li><li><span class="t">09:50</span>New work order: HVAC — D-02 (ticket #4821)</li><li><span class="t">Yesterday</span>Owner statement exported for Q4</li><li><span class="t">Yesterday</span>Unit A-07 scheduled for showing</li></ul></div>
+</div>
+<div class="foot">
+<h2 style="margin-top:0;font-size:1rem">Install this pack</h2>
+<code>curl -fsSL .../packages/property/install.sh | bash</code>
+<div class="priceline">
+<div class="pill"><b>Free</b> — $0 forever</div>
+<div class="pill"><b>Starter</b> — $399–$799 one-time</div>
+<div class="pill"><b>Managed</b> — $9–$49/mo</div>
+</div>
+</div>
+</div></body></html>

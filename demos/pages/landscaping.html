@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenPacks — Landscaping Pack</title>
+<style>
+:root{--accent:#16a34a;--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--border:#30363d;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:1.4rem 1.2rem 3rem}
+.top{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem;
+background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.logo{font-weight:800;font-size:1.25rem} .logo b{color:var(--accent)}
+.badge{font-size:.72rem;color:var(--muted);text-align:right}
+.hero{padding:1.6rem 0 .8rem;display:flex;gap:1rem;align-items:center}
+.hero .big{font-size:2.6rem} .hero h1{margin:0;font-size:1.7rem;letter-spacing:-.01em}
+.hero .sub{color:var(--muted);font-size:.92rem}
+.tag{margin-left:auto;background:var(--panel2);border:1px solid var(--border);border-radius:99px;
+padding:.4rem .9rem;font-size:.8rem;color:var(--accent);white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:1.2rem 0}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.kpi .v{font-size:1.5rem;font-weight:800} .kpi .k{color:var(--muted);font-size:.78rem}
+.kpi:first-child{border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:.9rem}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.1rem}
+.card h2{margin:0 0 .8rem;font-size:1rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{text-align:left;color:var(--muted);font-weight:600;padding:.4rem .5rem;border-bottom:1px solid var(--border);font-size:.72rem;text-transform:uppercase}
+td{padding:.55rem .5rem;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+td .st{color:var(--accent);font-weight:600}
+.feed li{list-style:none;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.feed li:last-child{border-bottom:none} .feed .t{color:var(--muted);font-size:.72rem;display:block}
+.feed ul{margin:0;padding:0}
+.foot{margin-top:1.4rem;padding:1.2rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.foot code{background:var(--panel2);padding:.2rem .5rem;border-radius:5px;font-size:.78rem;color:var(--accent)}
+.priceline{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.7rem}
+.pill{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:.75rem}
+.pill b{color:var(--accent)}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero{flex-direction:column;align-items:flex-start}}
+</style></head><body><div class="wrap">
+<div class="top"><div class="logo">Open<b>Packs</b></div>
+<div class="badge">Landscaping Pack<br>Live console preview</div></div>
+<div class="hero"><div class="big">🌱</div>
+<div><h1>Landscaping</h1><div class="sub">OpenFieldPro · recurring · Port 3002</div></div>
+<div class="tag">● Live — http://localhost:3002</div></div>
+<div class="kpis">
+<div class="kpi"><div class="v">34</div><div class="k">Recurring Routes</div></div><div class="kpi"><div class="v">4</div><div class="k">Crews Deployed</div></div><div class="kpi"><div class="v">$12,750</div><div class="k">Auto-Invoiced</div></div><div class="kpi"><div class="v">212 snaps</div><div class="k">Photo Proof</div></div>
+</div>
+<div class="grid">
+<div class="card"><h2>Live board</h2>
+<table><thead><tr><th>Route</th><th>Client</th><th>Service</th><th>Crew</th><th>Status</th></tr></thead><tbody>
+<tr><td>Route L-3</td><td>Grove Homes (24)</td><td>Mow + edge</td><td>Crew A</td><td>Complete — photos posted</td></tr><tr><td>Route L-7</td><td>Summit Lot 2</td><td>Mow + mulch</td><td>Crew C</td><td>On site</td></tr><tr><td>Route L-12</td><td>Ridge Estates (9)</td><td>Seasonal beds</td><td>Crew B</td><td>Scheduled Tue</td></tr><tr><td>Job X-40</td><td>Pine Lot 1</td><td>Lawn treatment</td><td>Crew D</td><td>Complete — invoiced</td></tr><tr><td>Route L-5</td><td>Meadow Row</td><td>Mow + hedge</td><td>Crew A</td><td>Backlog +1 day</td></tr>
+</tbody></table></div>
+<div class="card"><h2>Activity feed</h2>
+<ul class="feed"><li><span class="t">13:10</span>24 photo proofs auto-tagged to Grove Homes route</li><li><span class="t">12:22</span>Invoice $480 auto-sent on Route L-3 completion</li><li><span class="t">11:05</span>Recurring schedule adjusted: Summit Lot 2 → every 10 days</li><li><span class="t">Yesterday</span>Crew B reassigned to Ridge Estates seasonal beds</li></ul></div>
+</div>
+<div class="foot">
+<h2 style="margin-top:0;font-size:1rem">Install this pack</h2>
+<code>curl -fsSL .../packages/landscaping/install.sh | bash</code>
+<div class="priceline">
+<div class="pill"><b>Free</b> — $0 forever</div>
+<div class="pill"><b>Starter</b> — $399–$799 one-time</div>
+<div class="pill"><b>Managed</b> — $9–$49/mo</div>
+</div>
+</div>
+</div></body></html>

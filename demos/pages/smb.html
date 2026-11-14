@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenPacks — General SMB Pack</title>
+<style>
+:root{--accent:#6366f1;--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--border:#30363d;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:1.4rem 1.2rem 3rem}
+.top{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem;
+background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.logo{font-weight:800;font-size:1.25rem} .logo b{color:var(--accent)}
+.badge{font-size:.72rem;color:var(--muted);text-align:right}
+.hero{padding:1.6rem 0 .8rem;display:flex;gap:1rem;align-items:center}
+.hero .big{font-size:2.6rem} .hero h1{margin:0;font-size:1.7rem;letter-spacing:-.01em}
+.hero .sub{color:var(--muted);font-size:.92rem}
+.tag{margin-left:auto;background:var(--panel2);border:1px solid var(--border);border-radius:99px;
+padding:.4rem .9rem;font-size:.8rem;color:var(--accent);white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:1.2rem 0}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.kpi .v{font-size:1.5rem;font-weight:800} .kpi .k{color:var(--muted);font-size:.78rem}
+.kpi:first-child{border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:.9rem}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.1rem}
+.card h2{margin:0 0 .8rem;font-size:1rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{text-align:left;color:var(--muted);font-weight:600;padding:.4rem .5rem;border-bottom:1px solid var(--border);font-size:.72rem;text-transform:uppercase}
+td{padding:.55rem .5rem;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+td .st{color:var(--accent);font-weight:600}
+.feed li{list-style:none;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.feed li:last-child{border-bottom:none} .feed .t{color:var(--muted);font-size:.72rem;display:block}
+.feed ul{margin:0;padding:0}
+.foot{margin-top:1.4rem;padding:1.2rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.foot code{background:var(--panel2);padding:.2rem .5rem;border-radius:5px;font-size:.78rem;color:var(--accent)}
+.priceline{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.7rem}
+.pill{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:.75rem}
+.pill b{color:var(--accent)}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero{flex-direction:column;align-items:flex-start}}
+</style></head><body><div class="wrap">
+<div class="top"><div class="logo">Open<b>Packs</b></div>
+<div class="badge">General SMB Pack<br>Live console preview</div></div>
+<div class="hero"><div class="big">📊</div>
+<div><h1>General SMB</h1><div class="sub">Dolibarr · ERPNext · Port 3007</div></div>
+<div class="tag">● Live — http://localhost:3007</div></div>
+<div class="kpis">
+<div class="kpi"><div class="v">23</div><div class="k">Invoices Open</div></div><div class="kpi"><div class="v">$38,400</div><div class="k">Revenue MTD</div></div><div class="kpi"><div class="v">6</div><div class="k">Projects</div></div><div class="kpi"><div class="v">Enabled</div><div class="k">E-Invoicing</div></div>
+</div>
+<div class="grid">
+<div class="card"><h2>Live board</h2>
+<table><thead><tr><th>Ref</th><th>Counterparty</th><th>Amount</th><th>Stage</th><th>Note</th></tr></thead><tbody>
+<tr><td>INV-2044</td><td>Acme Corp</td><td>$8,200</td><td>Overdue 12d</td><td>Payment chased</td></tr><tr><td>INV-2051</td><td>Blue Oak</td><td>$3,400</td><td>Due in 5d</td><td>—</td></tr><tr><td>Q-318</td><td>Greenline (quote)</td><td>$12,000</td><td>Sent</td><td>Awaiting sign</td></tr><tr><td>PRJ-07</td><td>Web portal</td><td>60%</td><td>On budget</td><td>2 tasks due</td></tr><tr><td>STK</td><td>Server units</td><td>Low</td><td>2 left</td><td>PO raised</td></tr>
+</tbody></table></div>
+<div class="card"><h2>Activity feed</h2>
+<ul class="feed"><li><span class="t">16:40</span>E-invoice INV-2044 re-sent to Acme Corp</li><li><span class="t">15:22</span>Project PRJ-07 at 60% — 2 tasks due this week</li><li><span class="t">14:10</span>Quote Q-318 ($12,000) delivered to Greenline</li><li><span class="t">13:05</span>Purchase order raised: server units (2)</li></ul></div>
+</div>
+<div class="foot">
+<h2 style="margin-top:0;font-size:1rem">Install this pack</h2>
+<code>curl -fsSL .../packages/smb/install.sh | bash</code>
+<div class="priceline">
+<div class="pill"><b>Free</b> — $0 forever</div>
+<div class="pill"><b>Starter</b> — $399–$899 one-time</div>
+<div class="pill"><b>Managed</b> — $9–$49/mo</div>
+</div>
+</div>
+</div></body></html>

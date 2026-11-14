@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenPacks — Small Vendors Pack</title>
+<style>
+:root{--accent:#8b5cf6;--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--border:#30363d;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:1.4rem 1.2rem 3rem}
+.top{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem;
+background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.logo{font-weight:800;font-size:1.25rem} .logo b{color:var(--accent)}
+.badge{font-size:.72rem;color:var(--muted);text-align:right}
+.hero{padding:1.6rem 0 .8rem;display:flex;gap:1rem;align-items:center}
+.hero .big{font-size:2.6rem} .hero h1{margin:0;font-size:1.7rem;letter-spacing:-.01em}
+.hero .sub{color:var(--muted);font-size:.92rem}
+.tag{margin-left:auto;background:var(--panel2);border:1px solid var(--border);border-radius:99px;
+padding:.4rem .9rem;font-size:.8rem;color:var(--accent);white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:1.2rem 0}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.kpi .v{font-size:1.5rem;font-weight:800} .kpi .k{color:var(--muted);font-size:.78rem}
+.kpi:first-child{border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:.9rem}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.1rem}
+.card h2{margin:0 0 .8rem;font-size:1rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{text-align:left;color:var(--muted);font-weight:600;padding:.4rem .5rem;border-bottom:1px solid var(--border);font-size:.72rem;text-transform:uppercase}
+td{padding:.55rem .5rem;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+td .st{color:var(--accent);font-weight:600}
+.feed li{list-style:none;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.feed li:last-child{border-bottom:none} .feed .t{color:var(--muted);font-size:.72rem;display:block}
+.feed ul{margin:0;padding:0}
+.foot{margin-top:1.4rem;padding:1.2rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.foot code{background:var(--panel2);padding:.2rem .5rem;border-radius:5px;font-size:.78rem;color:var(--accent)}
+.priceline{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.7rem}
+.pill{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:.75rem}
+.pill b{color:var(--accent)}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero{flex-direction:column;align-items:flex-start}}
+</style></head><body><div class="wrap">
+<div class="top"><div class="logo">Open<b>Packs</b></div>
+<div class="badge">Small Vendors Pack<br>Live console preview</div></div>
+<div class="hero"><div class="big">🚚</div>
+<div><h1>Small Vendors</h1><div class="sub">Posnic · MyCompany (offline) · Port 3004</div></div>
+<div class="tag">● Live — http://localhost:3004</div></div>
+<div class="kpis">
+<div class="kpi"><div class="v">$1,860</div><div class="k">Today Sales</div></div><div class="kpi"><div class="v">63</div><div class="k">Items Sold</div></div><div class="kpi"><div class="v">4 SKUs</div><div class="k">Inventory Low</div></div><div class="kpi"><div class="v">Pending 2</div><div class="k">Offline Syncs</div></div>
+</div>
+<div class="grid">
+<div class="card"><h2>Live board</h2>
+<table><thead><tr><th>Ref</th><th>Location</th><th>Total</th><th>Items</th><th>Sync</th></tr></thead><tbody>
+<tr><td>S-482</td><td>Market Stall A</td><td>$540</td><td>8 items</td><td>Synced</td></tr><tr><td>S-483</td><td>Farmers Pop-up</td><td>$710</td><td>14 items</td><td>Synced</td></tr><tr><td>S-484</td><td>Cafe Counter</td><td>$610</td><td>41 items</td><td>Offline — 2 syncs</td></tr><tr><td>INV</td><td>Gluten-free mix</td><td>Low stock</td><td>3 left</td><td>Reorder flag</td></tr><tr><td>INV</td><td>Ceramic cups</td><td>Low stock</td><td>5 left</td><td>Reorder flag</td></tr>
+</tbody></table></div>
+<div class="card"><h2>Activity feed</h2>
+<ul class="feed"><li><span class="t">16:20</span>2 transactions queued offline — will sync on reconnect</li><li><span class="t">15:55</span>Low-stock alert: gluten-free mix (3 remaining)</li><li><span class="t">14:12</span>End-of-day report: $1,860 across 3 locations</li><li><span class="t">13:00</span>Barcode scan batch imported (41 items)</li></ul></div>
+</div>
+<div class="foot">
+<h2 style="margin-top:0;font-size:1rem">Install this pack</h2>
+<code>curl -fsSL .../packages/vendors/install.sh | bash</code>
+<div class="priceline">
+<div class="pill"><b>Free</b> — $0 forever</div>
+<div class="pill"><b>Starter</b> — $299–$599 one-time</div>
+<div class="pill"><b>Managed</b> — $9–$49/mo</div>
+</div>
+</div>
+</div></body></html>

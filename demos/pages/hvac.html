@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenPacks — HVAC / Trades Pack</title>
+<style>
+:root{--accent:#0ea5e9;--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--border:#30363d;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:1.4rem 1.2rem 3rem}
+.top{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem;
+background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.logo{font-weight:800;font-size:1.25rem} .logo b{color:var(--accent)}
+.badge{font-size:.72rem;color:var(--muted);text-align:right}
+.hero{padding:1.6rem 0 .8rem;display:flex;gap:1rem;align-items:center}
+.hero .big{font-size:2.6rem} .hero h1{margin:0;font-size:1.7rem;letter-spacing:-.01em}
+.hero .sub{color:var(--muted);font-size:.92rem}
+.tag{margin-left:auto;background:var(--panel2);border:1px solid var(--border);border-radius:99px;
+padding:.4rem .9rem;font-size:.8rem;color:var(--accent);white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:1.2rem 0}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.kpi .v{font-size:1.5rem;font-weight:800} .kpi .k{color:var(--muted);font-size:.78rem}
+.kpi:first-child{border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:.9rem}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.1rem}
+.card h2{margin:0 0 .8rem;font-size:1rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{text-align:left;color:var(--muted);font-weight:600;padding:.4rem .5rem;border-bottom:1px solid var(--border);font-size:.72rem;text-transform:uppercase}
+td{padding:.55rem .5rem;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+td .st{color:var(--accent);font-weight:600}
+.feed li{list-style:none;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.feed li:last-child{border-bottom:none} .feed .t{color:var(--muted);font-size:.72rem;display:block}
+.feed ul{margin:0;padding:0}
+.foot{margin-top:1.4rem;padding:1.2rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.foot code{background:var(--panel2);padding:.2rem .5rem;border-radius:5px;font-size:.78rem;color:var(--accent)}
+.priceline{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.7rem}
+.pill{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:.75rem}
+.pill b{color:var(--accent)}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero{flex-direction:column;align-items:flex-start}}
+</style></head><body><div class="wrap">
+<div class="top"><div class="logo">Open<b>Packs</b></div>
+<div class="badge">HVAC / Trades Pack<br>Live console preview</div></div>
+<div class="hero"><div class="big">❄️</div>
+<div><h1>HVAC / Trades</h1><div class="sub">OpenFieldPro · ERPNext Field · Port 3001</div></div>
+<div class="tag">● Live — http://localhost:3001</div></div>
+<div class="kpis">
+<div class="kpi"><div class="v">18</div><div class="k">Jobs Today</div></div><div class="kpi"><div class="v">6</div><div class="k">Technicians On Route</div></div><div class="kpi"><div class="v">$41,300</div><div class="k">Parts Inventory</div></div><div class="kpi"><div class="v">$9,400</div><div class="k">Same-Day Invoiced</div></div>
+</div>
+<div class="grid">
+<div class="card"><h2>Live board</h2>
+<table><thead><tr><th>Job</th><th>Address</th><th>Service</th><th>Assigned</th><th>Status</th></tr></thead><tbody>
+<tr><td>#J-2214</td><td>Cedar Ave 12</td><td>AC tune-up</td><td>Tech: R. Cole</td><td>Done → invoiced</td></tr><tr><td>#J-2219</td><td>Maple St 8</td><td>No-cooling diag</td><td>Tech: T. Nguyen</td><td>En route 2:15pm</td></tr><tr><td>#J-2223</td><td>Hill Rd 3</td><td>Furnace install</td><td>Tech: crew B</td><td>Parts reserved</td></tr><tr><td>#J-2230</td><td>Oak Pl 41</td><td>Thermostat swap</td><td>Tech: R. Cole</td><td>After 4:00pm</td></tr><tr><td>#J-2231</td><td>Main St 9</td><td>Filter change (recurring)</td><td>Auto-scheduled</td><td>Next wk</td></tr>
+</tbody></table></div>
+<div class="card"><h2>Activity feed</h2>
+<ul class="feed"><li><span class="t">12:02</span>GPS: Tech Nguyen left depot — ETA 22 min</li><li><span class="t">11:47</span>Parts reservation confirmed for #J-2223 (cabinet kit)</li><li><span class="t">10:31</span>Invoice $1,240 auto-sent on job #J-2214 completion</li><li><span class="t">09:12</span>Recurring filter change scheduled for Oak Pl 41</li></ul></div>
+</div>
+<div class="foot">
+<h2 style="margin-top:0;font-size:1rem">Install this pack</h2>
+<code>curl -fsSL .../packages/hvac/install.sh | bash</code>
+<div class="priceline">
+<div class="pill"><b>Free</b> — $0 forever</div>
+<div class="pill"><b>Starter</b> — $599–$1,199 one-time</div>
+<div class="pill"><b>Managed</b> — $9–$49/mo</div>
+</div>
+</div>
+</div></body></html>
